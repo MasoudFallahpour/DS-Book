@@ -1,0 +1,10 @@
+*.ptd
+*.aux
+*.bbl
+*.blg
+*.log
+*.pdf
+*.synctex
+*.toc
+*.docx
+Backup_*

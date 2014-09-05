@@ -1,0 +1,176 @@
+% AMS packages for typesetting mathematics more effectively.
+\usepackage{amsthm}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+\allowdisplaybreaks[4]
+
+\usepackage{pifont}
+
+% This package provides extensible arrows
+\usepackage{extarrows}
+
+% Set the math indent to zero centimeter so that there is no 
+% leading space between left margin and display mode equations.
+\setlength{\mathindent}{0cm}
+
+% Set the margins
+\usepackage[top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+
+% This packege is used to customize the numbering scheme of "enumerate" environment.
+\usepackage{enumerate}
+
+% This package provides facilities to have more control over float environments.
+\usepackage{float}
+
+% By using this package the paragraph indentation is set to zero and
+% some vertical space is added between paragraphs.
+\usepackage{parskip}
+
+% This package provides facilities for drawing various shapes.
+\usepackage{pstricks}
+
+% This package is used to customize the caption of float environments.
+\usepackage[font=footnotesize]{caption}
+\captionsetup{labelformat=parens,labelfont={bf},margin=1cm,font=footnotesize}
+
+% This package is used to reset footnote counter for each new page.
+\usepackage{zref-perpage} 
+\zmakeperpage{footnote}
+
+% These packages provide facilities for typesetting algorithms.
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+
+% This package provides the ability to change the dependency of counters.
+\usepackage{chngcntr}
+
+% Counter "algorithm" is reset to zero each time counter "chapter" is incremented.
+\counterwithin{algorithm}{chapter}
+
+% This package is used to increase the spacing between lines of a paragraph
+\usepackage[onehalfspacing]{setspace}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\usepackage[linewidth=0.7pt]{mdframed}
+
+% Package for typsetting in Persian.
+\usepackage{xepersian}
+
+% Set the default font of Persian text.
+\settextfont[Scale=1]{HM XNiloofar}
+
+% Reduce default size of Persian digits in math mode.
+\setdigitfont[Scale=1]{HM XNiloofar}
+
+\defpersianfont\nastaliq[Scale=2]{IranNastaliq}
+
+\makeatletter
+
+% Change the numbering of algorithms.
+% For example the first algorithm in second chapater is numbered as 1.2
+\renewcommand{\thealgorithm}{\thechapter\@SepMark\arabic{algorithm}}
+
+%\def\abj@num@i#1{%
+%	\ifcase#1
+%		\or الف%
+%		\or ب%
+%		\or ج%
+%		\or د%
+%		\or ه%
+%		\or و%
+%		\or ز%
+%		\or ح%
+%		\or ط%
+%	\fi%
+%	\ifnum#1=\z@\abjad@zero\fi%
+%}
+\makeatother
+
+%*********************************************
+%*                   Definition of macros     		   		    *
+%*********************************************
+% A new counter, with initial value of 0, is defined to automate the numbering of questions.
+% This counter is reset to 0 everytime counter "chapter" is incremented.
+\newcounter{qcnt}[chapter]
+
+% A new counter, with initial value of 0, is defined to automate the numbering of answers.
+% This counter is reset to 0 everytime counter "chapter" is incremented.
+\newcounter{acnt}[chapter]
+
+% This macro typesets the header of a question.
+\فرمان‌نو{\سوال}{\گام‌شمارنده{qcnt}\بدون‌تورفتگی{\scalebox{0.75}{$\blacktriangleleft$}}\فضا\متن‌سیاه{سوال {\theqcnt}.\فضا}}
+% This macro typesets the header of an answer.
+\فرمان‌نو{\پاسخ}{\گام‌شمارنده{acnt}\بدون‌تورفتگی{\scalebox{0.75}{$\lhd$}}\فضا\متن‌سیاه{پاسخ سوال {\theacnt}.\فضا}}
+
+% macros for typesetting attribute(s) of objects.
+\newcommand{\attribxi}[2]{\ensuremath{#1.\hspace*{1pt}\id{#2}}}
+\newcommand{\attribxx}[2]{\ensuremath{#1.\hspace*{1pt}#2}}
+\newcommand{\attribix}[2]{\ensuremath{\id{#1}\hspace*{1pt}.#2}}
+\newcommand{\attribii}[2]{\ensuremath{\id{#1}\hspace*{1pt}.\hspace*{1pt}\id{#2}}}
+\newcommand{\attrib}[2]{\attribxi{#1}{#2}}
+\newcommand{\attribe}[3]{\attribxi{(#1,#2)}{#3}}
+\newcommand{\attribex}[3]{\attribxx{(#1,#2)}{#3}}
+\newcommand{\attribb}[3]{\attribxi{\attribxi{#1}{#2}}{#3}}
+\newcommand{\attribbb}[4]{\attribxi{\attribb{#1}{#2}{#3}}{#4}}
+\newcommand{\attribbbb}[5]{\attribxi{\attribbb{#1}{#2}{#3}{#4}}{#5}}
+\newcommand{\attribbxxi}[3]{\attribxi{\attribxx{#1}{#2}}{#3}}
+
+% change comment symbol to "//"
+\algrenewcommand{\algorithmiccomment}[1]{\texttt{\textbf{/\hspace*{-0.3em}/}} #1}
+
+% remove keyword "procedure" from procedure header
+%\algrenewcommand\algorithmicprocedure{}
+%
+%% remove keyword "function" from function header
+%\algrenewcommand\algorithmicfunction{}
+
+\algrenewcommand\algorithmicdo{}
+\algrenewcommand\algorithmicthen{}
+
+% defenition of some keywords
+\newcommand{\To}{\ensuremath{\mathbf{\ to\ }}}
+\newcommand{\Downto}{\ensuremath{\mathbf{\ downto\ }}}
+\renewcommand{\And}{\ensuremath{\mathbf{\ and\ }}}
+\newcommand{\Or}{\ensuremath{\mathbf{\ or\ }}}
+
+% To typeset equality operator in conditionals
+\DeclareMathOperator{\isequal}{\scalebox{0.8}[1]{=}\hspace*{1pt}\scalebox{0.8}[1]{=}}
+%\newcommand{\isequal}{\mathrel{\scalebox{0.8}[1]{=}\hspace*{1pt}\scalebox{0.8}[1]{=}}}
+
+% To typeset subarray ranges.
+\newcommand{\twodots}{\mathinner{\ldotp\ldotp}}
+
+% To typeset identifiers that are more than one letter
+\newcommand{\id}[1]{\ensuremath{\mathit{#1}}}
+
+% Override "gets" macro; changing it from left-pointing arrow to =
+\renewcommand{\gets}{\mathrel{\hspace{1pt}=\hspace{1pt}}}
+
+\makeatletter
+
+% To typeset constants like TRUE,FALSE and NULL
+\newcommand{\const}[1]{%
+	\if@RTL%
+		\lr{\ensuremath{\textsc{#1}}}%
+	\else%
+		\ensuremath{\textsc{#1}}%
+	\fi%
+}
+
+\newcommand{\bcall}[2]{%
+	\if@RTL%
+		\lr{\Call{#1}{#2}}%
+	\else%
+		\Call{#1}{#2}%
+	\fi%
+}
+
+\makeatother
+
+% Set the bullet symbols of itemize environment
+\renewcommand{\labelitemi}{\scalebox{0.6}{\ding{108}}}
+\renewcommand{\labelitemii}{\scalebox{0.6}{\ding{110}}}
