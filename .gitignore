@@ -4,6 +4,7 @@
 *.blg
 *.log
 *.pdf
+!cover.pdf
 *.synctex
 *.toc
 *.docx
