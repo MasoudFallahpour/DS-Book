@@ -8,15 +8,22 @@
 
 \includepdf[pages={1}]{./figs/cover/cover.pdf}
 
+\frontmatter
+
+\pagestyle{plain}
+
 \input{./titlepage/titlepage}
 
-\input{./preface/Preface}
+\input{./dedication/Dedication}
 
-\frontmatter
+\input{./preface/Preface}
 
 \tableofcontents
 
 \mainmatter
+
+\pagestyle{fancy}
+
 \include{./chapter_1/Chapter_1}
 \include{./chapter_2/Chapter_2}
 \include{./chapter_3/Chapter_3}
