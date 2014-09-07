@@ -1,42 +1,42 @@
 \documentclass[fleqn,12pt,a4paper,oneside]{book}
 
-\input{./preamble/preamble}
+\input{preamble/preamble}
 
-\includeonly{./chapter_2/Chapter_2}
+\includeonly{chapter_2/Chapter_2}
 
 \begin{document}
 
-\includepdf[pages={1}]{./figs/cover/cover.pdf}
+\includepdf[pages={1}]{figs/cover/cover.pdf}
 
 \frontmatter
 
 \pagestyle{plain}
 
-\input{./titlepage/titlepage}
+\input{titlepage/titlepage}
 
-\input{./license/License}
+\input{license/License}
 
-\input{./dedication/Dedication}
-
-\input{./preface/Preface}
+\input{dedication/Dedication}
 
 \tableofcontents
+
+\input{preface/Preface}
 
 \mainmatter
 
 \pagestyle{fancy}
 
-\include{./chapter_1/Chapter_1}
-\include{./chapter_2/Chapter_2}
-\include{./chapter_3/Chapter_3}
-\include{./chapter_4/Chapter_4}
-\include{./chapter_5/Chapter_5}
+\include{chapter_1/Chapter_1}
+\include{chapter_2/Chapter_2}
+\include{chapter_3/Chapter_3}
+\include{chapter_4/Chapter_4}
+\include{chapter_5/Chapter_5}
 
 %\appendix
 
 \backmatter
 
 \bibliographystyle{ieeetr-fa}
-\bibliography{./references/references}
+\bibliography{references/references}
 
 \end{document}
