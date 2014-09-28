@@ -340,7 +340,7 @@ A[1]+A[3]=A[2]+A[4]=A[5]+A[6]=11
 شبه کد الگوریتم خواسته شد در قالب الگوریتم {\eqref{ch2:alg:checkPair}} آورده شده است. روش کار این الگوریتم در ادامه توضیح داده می‌شود.
 
 \begin{algorithm}
-\caption{یافتن دو عنصر در یک آرایه با مجموع مشخص}\label{ch2:alg:checkPair}
+\caption{یافتن دو عنصر با مجموع مشخص در یک آرایه یک بعدی}\label{ch2:alg:checkPair}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{CheckPair}{$A,k$}
@@ -378,7 +378,7 @@ A[1]+A[3]=A[2]+A[4]=A[5]+A[6]=11
 شبه کد الگوریتم یافتن عدد تکرار شده در یک آرایه در الگوریتم {\eqref{ch2:alg:fndRepeatedNo}} آورده شده است. 
 
 \begin{algorithm}
-\caption{یافتن عدد تکرار شده در یک آرایه}\label{ch2:alg:fndRepeatedNo}
+\caption{یافتن عدد تکرار شده در یک آرایه یک بعدی}\label{ch2:alg:fndRepeatedNo}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{FindRepeated}{$A$}	
@@ -414,7 +414,7 @@ A[1]+A[3]=A[2]+A[4]=A[5]+A[6]=11
 الگوریتم {\eqref{ch2:alg:recFindMax}} نشان دهنده‌ی شبه کد تابع بازگشتی یافتن بزرگترین مقدار در یک آرایه است. برای یافتن بزرگترین مقدار در آرایه‌ی {$A$} تابع {\bcall{FindMax}{}} باید به صورت {\bcall{FindMax}{$A,1,\attrib{A}{length}$}} فراخوانی شود. در ادامه روش کار این تابع بیان می‌شود.
 
 \begin{algorithm}[H]
-\caption{یافتن بزرگترین مقدار در یک آرایه به صورت بازگشتی}\label{ch2:alg:recFindMax}
+\caption{یافتن بزرگترین مقدار در یک آرایه یک بعدی به صورت بازگشتی}\label{ch2:alg:recFindMax}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{FindMax}{$A,\id{low},\id{high}$}
@@ -429,7 +429,7 @@ A[1]+A[3]=A[2]+A[4]=A[5]+A[6]=11
 \end{algorithm}
 
 \begin{algorithm}
-\caption*{یافتن بزرگترین مقدار در یک آرایه به صورت بازگشتی - ادامه}
+\caption*{یافتن بزرگترین مقدار در یک آرایه یک بعدی به صورت بازگشتی - ادامه}
 \begin{latin}
 \begin{algorithmic}[1]
 			\algrestore{findMaxBrk}		
@@ -564,7 +564,7 @@ A[1]+A[3]=A[2]+A[4]=A[5]+A[6]=11
 \end{figure}
 
 \begin{algorithm}[H]
-\caption{یافتن زیرآرایه‌ی بیشینه‌ در یک آرایه‌ی یک بعدی}\label{ch2:alg:maxSubarray}
+\caption{یافتن زیرآرایه‌ی بیشینه‌ در یک آرایه یک بعدی}\label{ch2:alg:maxSubarray}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{MaxSubarray}{$A$}
@@ -591,7 +591,7 @@ A[1]+A[3]=A[2]+A[4]=A[5]+A[6]=11
 \end{algorithm}
 
 \begin{algorithm}
-\caption*{یافتن زیرآرایه‌ی بیشینه‌ در یک آرایه‌ی یک بعدی - ادامه}
+\caption*{یافتن زیرآرایه‌ی بیشینه‌ در یک آرایه یک بعدی - ادامه}
 \begin{latin}
 \begin{algorithmic}[1]
 		\algrestore{maxSubarrayBrk}		
@@ -622,7 +622,7 @@ A[1]+A[3]=A[2]+A[4]=A[5]+A[6]=11
 شبه کد الگوریتم یافتن {$k$}امین بزرگترین مقدار در یک آرایه در الگوریتم {\eqref{ch2:alg:kthLargest}} آمده است.
 
 \begin{algorithm}
-\caption{یافتن {$k$}امین بزرگترین مقدار در یک آرایه}\label{ch2:alg:kthLargest}
+\caption{یافتن {$k$} امین بزرگترین عنصر در یک آرایه یک بعدی}\label{ch2:alg:kthLargest}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{KthLargest}{$A,k$}
@@ -666,7 +666,7 @@ S(n)&=\sum_{i=1}^{k}{(n-i)}\\
 شبه کد الگوریتم یافتن {$k$}امین بزرگترین مقدار در یک آرایه در الگوریتم {\eqref{ch2:alg:recurKthLargest}} نشان داده شده است. اگر قصد یافتن {$k$}امین بزرگترین مقدار در آرایه‌ی {$A[1\twodots n]$} را داشته باشیم این الگوریتم باید به شکل {\bcall{KthLargest}{$A,1,n,k$}} فراخوانی شود.
 
 \begin{algorithm}
-\caption{یافتن {$k$}امین بزرگترین مقدار در یک آرایه به شکل بازگشتی}\label{ch2:alg:recurKthLargest}
+\caption{یافتن {$k$} امین بزرگترین عنصر در یک آرایه یک بعدی به صورت بازگشتی}\label{ch2:alg:recurKthLargest}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{KthLargest}{$A,l,h,k$}
