@@ -8,4 +8,7 @@
 *.synctex
 *.toc
 *.out
+*.loa
+*.lof
+*.lot
 Backup_*
