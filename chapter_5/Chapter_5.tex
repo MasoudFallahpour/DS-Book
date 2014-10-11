@@ -103,6 +103,55 @@ k^{m+1}-k^m \leq k^{m+1}-1 < k^{m+1}(k-1)\label{ch5:eqn:treeHeightIneq4}
 \end{equation}
 درستی نامعادله {\ref{ch5:eqn:treeHeightIneq4}} را می‌توان با استقرا بر روی {$m$} نشان داد و به این ترتیب اثبات کامل است.
 
+\سوال فرض کنید برای پیاده‌سازی درخت‌های {$k$}تایی از گره‌هایی با قالب نشان داده شده در شکل {\ref{ch5:fig:treeNodeStruct}} استفاده کرده‌ایم. در چنین ساختاری دارای یک فیلد داده‌ای و {$k$} فیلد اشاره‌گر برای اشاره به هر یک از {$k$} زیردرخت یک گره هستیم. اگر دارای {$n$} گره در چنین درختی باشیم آنگاه تعداد اشاره‌گرهای تهی چه تعداد خواهد بود؟
+\begin{figure}
+\begin{center}
+\scalebox{0.8}
+{
+\begin{pspicture}(0,-1.87)(12.255546,1.87)
+\psframe[linewidth=0.04,dimen=outer](8.26,1.11)(4.06,0.31)
+\psline[linewidth=0.04cm](4.84,1.07)(4.84,0.33)
+\psline[linewidth=0.04cm](7.46,1.09)(7.46,0.35)
+\pstriangle[linewidth=0.04,dimen=outer](1.33,-1.87)(2.66,1.34)
+\pstriangle[linewidth=0.04,dimen=outer](7.95,-1.87)(2.66,1.34)
+\psframe[linewidth=0.04,dimen=outer](8.26,1.87)(4.06,1.07)
+\usefont{T1}{ptm}{m}{n}
+\rput(6.1545315,1.46){\rl{فیلد داده}}
+\psdots[dotsize=0.14](4.46,0.73)
+\psdots[dotsize=0.14](7.86,0.71)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.42,0.71)(1.38,-0.45)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(7.04,0.69)(7.96,-0.47)
+\usefont{T1}{ptm}{m}{n}
+\rput(1.33625,-1.34){$T_1$}
+\usefont{T1}{ptm}{m}{n}
+\rput(8.12625,-1.34){$T_{k-1}$}
+\psline[linewidth=0.04cm,linestyle=dotted,dotsep=0.16cm](5.72,-1.07)(6.6,-1.07)
+\pstriangle[linewidth=0.04,dimen=outer](4.35,-1.87)(2.66,1.34)
+\usefont{T1}{ptm}{m}{n}
+\rput(4.3907814,-1.34){$T_2$}
+\psline[linewidth=0.04cm](5.64,1.09)(5.64,0.35)
+\psdots[dotsize=0.14](5.24,0.71)
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.24,0.71)(4.4,-0.43)
+\psline[linewidth=0.04cm](6.64,1.05)(6.64,0.31)
+\psdots[dotsize=0.14](7.04,0.69)
+\pstriangle[linewidth=0.04,dimen=outer](10.95,-1.87)(2.66,1.34)
+\usefont{T1}{ptm}{m}{n}
+\rput(10.999375,-1.34){$T_k$}
+\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(7.84,0.73)(10.9,-0.47)
+\psline[linewidth=0.04cm,linestyle=dotted,dotsep=0.16cm](5.88,0.73)(6.46,0.73)
+\end{pspicture} 
+}\caption{ساختار یک گره در یک درخت {$k$}تایی}\label{ch5:fig:treeNodeStruct}
+\end{center}
+\end{figure}
+
+\پاسخ
+
+در چنین ساختاری هر گره دارای {$k$} اشاره‌گر است. در نتیجه هنگامی که {$n$} گره در درخت وجود دارد دارای {$nk$} اشاره‌گر هستیم. از این تعداد اشاره‌گر فقط {$n-1$} اشاره‌گر مورد استفاده قرار می‌گیرند زیرا برای اشاره به هر یک از گره‌ها به جز گره ریشه به یک اشاره‌گر نیاز است. اگر تعداد کل اشاره‌گرها را از تعداد اشاره‌گرهای مورد استفاده کم کنیم خواهیم داشت:
+\begin{displaymath}
+nk-(n-1)=nk-n+1=n(k-1)+1
+\end{displaymath}
+به این ترتیب تعداد اشاره‌گرهای تهی برابر با {$n(k-1)+1$} است.
+
 \قسمت{درخت‌های عمومی و دودویی}
 
 \سوال با فرض پیاده‌سازی درخت عمومی به کمک اشاره‌گرها و اینکه هر گره موظف است آدرس فرزندان خود را در یک لیست پیوندی نگاه دارد، تابعی بازگشتی بنویسید که بررسی کند آیا عنصری با مقدار {$x$} در درخت داده شده وجود دارد یا خیر؟ اگر {$x$} موجود بود مقدار {\const{true}} و در غیر اینصورت مقدار {\const{false}} را به عنوان خروجی تابع برگردانده شود.
@@ -366,31 +415,67 @@ T(3)=\frac{\displaystyle\binom{6}{3}}{4}=\frac{20}{4}=5
 \پاسخ
 
 \begin{algorithm}
-\caption{تعیین تعداد سطوح یک درخت دودویی}\label{ch5:alg:treeLevel}
+\caption{به دست آوردن تعداد سطوح یک درخت دودویی}\label{ch5:alg:treeLevel}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{TreeLevel}{$t$}
 		\If{$t \isequal \const{null}$}
 			\State	\Return 0
+		\EndIf
+		\State	$\id{leftLevel} \gets \bcall{TreeLevel}{\attrib{t}{\id{leftChild}}}$
+		\State	$\id{rightLevel} \gets \bcall{TreeLevel}{\attrib{t}{\id{rightChild}}}$			
+		\If{$\id{leftLevel} > \id{rightLevel}$}
+			\State	\Return	$(\id{leftLevel} + 1)$
 		\Else
-			\State	$\id{leftLevel} \gets \bcall{TreeLevel}{\attrib{t}{\id{leftChild}}}$
-			\State	$\id{rightLevel} \gets \bcall{TreeLevel}{\attrib{t}{\id{rightChild}}}$			
-			\If{$\id{leftLevel} > \id{rightLevel}$}
-				\State	\Return	$(\id{leftLevel} + 1)$
-			\Else
-				\State	\Return $(\id{rightLevel} + 1)$
-			\EndIf
+			\State	\Return $(\id{rightLevel} + 1)$
 		\EndIf
 \EndFunction
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
 
-\سوال تابعی بازگشتی بنویسید که اشاره‌گر به ریشه‌ی درختی دودویی را به عنوان ورودی دریافت کرده و پهنای درخت را به عنوان خروجی بازگرداند (منظور از پهنای درخت بیشترین تعداد گره در یک سطح است).
+\سوال پهنای یک درخت برابر است با تعداد گره‌های سطحی که دارای بیشترین تعداد گره در میان تمام سطوح درخت است.  برای مثال درخت نشان داده شده در شکل دارای پهنای چهار است زیرا سطح اول دارای یک گره، سطح دوم دارای دو گره، سطح سوم دارای چهار گره و سطح چهارم دارای یک گره است و در نتیجه حداکثر تعداد گره در یک سطح از این درخت برابر با چهار است و این یعنی پهنای درخت نیز برابر با چهار است. تابعی بازگشتی بنویسید که اشاره‌گر به ریشه‌ی یک درخت دودویی را به عنوان ورودی دریافت کرده و پهنای درخت را به عنوان خروجی بازگرداند.
 
 \پاسخ
 
-\سوال ساده‌ترین الگوریتم برای یافتن دومین بزرگترین عنصر در یک آرایه‌ی {$n$} عنصری نیاز به تقریباً {$2n$} مقایسه دارد. گام‌های کلی الگوریتمی را شرح دهید که دومین بزرگترین مقدار در یک آرایه را حداکثر {$n+2\lfloor \lg n \rfloor - 2$} مقایسه پیدا می‌کند (راهنمایی: فرض کنید تعداد عناصر آرایه زوج است و از درخت‌ برنده-بازنده\پانوشت{{\lr{winner-loser tree}}} استفاده کنید).
+شبه کد تابع به دست آوردن پهنای یک درخت دودویی در الگوریتم {\eqref{ch5:alg:treeWidth}} نشان داده شده است. این تابع علاوه بر پهنای درخت، شماره سطحی را که تعیین کننده پهنای درخت هست نیز برمی‌گرداند. روش کار این تابع در ادامه بیان می‌شود.
+
+زمانی که درخت ورودی تهی است مقدار صفر هم برای سطح و هم برای پهنای درخت بازگردانده می‌شود. اگر درخت ورودی دارای تنها یک عنصر باشد، که همان عنصر ریشه است، مقدار یک هم برای سطح و هم برای پهنای درخت بازگردانده می‌شود و این یعنی درخت دارای پهنای یک است و همچنین سطحی که دارای این پهنا است سطح شماره یک است. زمانی که درخت ورودی دارای بیش از یک عنصر است از فراخوانی بازگشتی استفاده می‌کنیم تا پهنای زیردرخت چپ و راست گره ریشه را به دست بیاوریم. چون پهنای زیر درخت چپ و راست گره ریشه به صورت جداگانه محاسبه می‌شوند باید بررسی کنیم تا در صورتی که {\id{leftLevel}} برابر با {\id{rightLevel}} باشد، مقادیر {\id{leftWidth}} و {\id{rightWidth}} با یکدیگر جمع شوند تا پهنای کلی درخت به دست آید. در صورتی که {\id{leftLevel}} برابر با {\id{rightLevel}} نباشد آنگاه مقدار بزرگتر از میان دو مقدار {\id{leftWidth}} و {\id{rightWidth}} به عنوان پهنای درخت و سطح متناظر با مقدار بزرگتر به عنوان سطحی که تعیین کننده پهنای درخت است به عنوان خروجی تابع بازگردانده می‌شوند.
+
+\begin{algorithm}
+\caption{به دست آوردن پهنای یک درخت دودویی}\label{ch5:alg:treeWidth}
+\begin{latin}
+\begin{algorithmic}[1]
+\Function{TreeWidth}{$t$}
+		\If{$t \isequal \const{null}$}
+			\State	\Return (0,0)
+		\EndIf
+		\If{$\attrib{t}{leftChild} \isequal \const{null} \And \attrib{t}{rightChild} \isequal \const{null}$}
+			\State	\Return (1,1)
+		\EndIf
+		\State	$\id{leftLevel},\id{leftWidth} \gets \bcall{TreeWidth}{\attrib{t}{leftChild}}$
+		\State	$\id{rightLevel},\id{rightWidth} \gets \bcall{TreeWidth}{\attrib{t}{rightChild}}$
+		\If{$\id{leftLevel} \isequal \id{rightLevel}$}
+			\State	$\id{width} \gets \id{leftWidth}+\id{rightWidth}$
+			\State	$\id{level} \gets \id{leftLevel}$
+		\Else
+			\State	$\id{width} \gets \bcall{Max}{\id{leftWidth},\id{rightWidth}}$
+			\If{$\id{leftWidth} > \id{rightWidth}$}
+				\State	$\id{width} \gets \id{leftWidth}$
+				\State	$\id{level} \gets \id{leftLevel}$
+			\Else			
+				\State	$\id{width} \gets \id{rightWidth}$			
+				\State	$\id{level} \gets \id{rightLevel}$
+			\EndIf
+		\EndIf
+		\State	\Return	$(\id{level},\id{width})$
+\EndFunction
+\end{algorithmic}
+\end{latin}
+\end{algorithm}
+
+
+\سوال ساده‌ترین الگوریتم برای یافتن دومین بزرگترین عنصر در یک آرایه‌ی {$n$} عنصری نیاز به تقریباً {$2n$} مقایسه دارد. گام‌های کلی الگوریتمی را شرح دهید که دومین بزرگترین مقدار در یک آرایه را حداکثر {$n+2\lfloor \lg n \rfloor - 2$} مقایسه پیدا می‌کند (راهنمایی: فرض کنید تعداد عناصر آرایه زوج است و از درخت‌ برنده-بازنده\پانویس{{\lr{winner-loser tree}}} استفاده کنید).
 
 \پاسخ
 
@@ -539,7 +624,7 @@ T(3)=\frac{\displaystyle\binom{6}{3}}{4}=\frac{20}{4}=5
 
 \پاسخ
 
-در ابتدا یک مثال ساده را بررسی می‌کنیم. فرض کنید قصد مرتب‌سازی آرایه‌ای سه عنصری را داریم و هر سه عنصر متمایز از یکدیگر هستند. برای نمایش روند مرتب‌سازی عناصر می‌توان از یک درخت دودویی استفاده کرد. در چنین درختی برچسب هر گره نمایش‌دهنده یک مقایسه میان دو عنصر آرایه است و برچسب هر یال نمایش دهنده‌ی نتیجه مقایسه دو عنصر است. ترتیب مرتب‌شده عناصر را می‌توان با حرکت از ریشه‌ی درخت تا یکی از برگ‌ها بدست آورد زیرا هر برگ بیانگر یکی از جایگشت‌های ممکن عناصر آرایه است. به چنین درختی، یک درخت تصمیم‌ دودویی\پانوشت{{\lr{Binary decision tree}}} گفته می‌شود. شکل {\eqref{ch5:fig:decisionTree}} نشان دهنده‌ی درخت تصمیم دودویی برای یک آرایه سه عنصری است (در این شکل {$x_i$} به معنی مقدار خانه {$i$}ام آرایه است).
+در ابتدا یک مثال ساده را بررسی می‌کنیم. فرض کنید قصد مرتب‌سازی آرایه‌ای سه عنصری را داریم و هر سه عنصر متمایز از یکدیگر هستند. برای نمایش روند مرتب‌سازی عناصر می‌توان از یک درخت دودویی استفاده کرد. در چنین درختی برچسب هر گره نمایش‌دهنده یک مقایسه میان دو عنصر آرایه است و برچسب هر یال نمایش دهنده‌ی نتیجه مقایسه دو عنصر است. ترتیب مرتب‌شده عناصر را می‌توان با حرکت از ریشه‌ی درخت تا یکی از برگ‌ها بدست آورد زیرا هر برگ بیانگر یکی از جایگشت‌های ممکن عناصر آرایه است. به چنین درختی، یک درخت تصمیم‌ دودویی\پانویس{{\lr{Binary decision tree}}} گفته می‌شود. شکل {\eqref{ch5:fig:decisionTree}} نشان دهنده‌ی درخت تصمیم دودویی برای یک آرایه سه عنصری است (در این شکل {$x_i$} به معنی مقدار خانه {$i$}ام آرایه است).
 \begin{figure}
 \begin{center}
 \scalebox{0.52}
@@ -723,7 +808,7 @@ n!\leq 2^{k-1}\label{ch5:eqn:dTreeMinDptIneqn1}
 
 به عنوان نتیجه‌گیری می‌توان گفت اعداد ۱۰۰۱ تا ۱۰۱۴ این امکان را دارند که به عنوان گره‌ی برگ در درخت هیپ بیشینه ظاهر شوند اما فقط هشت عدد از میان اعداد ۱۰۰۳ تا ۱۰۱۳ این امکان را داردند که به طور \متن‌خوابیده{همزمان} در گره‌های برگ ظاهر شوند.
 
-\سوال داده‌ساختار صف اولویت میانه\پانوشت{{\lr{Median Priority Queue}}}، یک داده‌ساختار شامل {$n$} عنصر با مقادیر متمایز است که می‌توان اعمال زیر را بر روی آن انجام داد:
+\سوال داده‌ساختار صف اولویت میانه\پانویس{{\lr{Median priority queue}}}، یک داده‌ساختار شامل {$n$} عنصر با مقادیر متمایز است که می‌توان اعمال زیر را بر روی آن انجام داد:
 \شروع{فقرات}
 \فقره درج یک عنصر در زمان {$O(\lg n)$}
 \فقره حذف عنصر دارای مقدار میانه در زمان {$O(\lg n)$}
@@ -804,52 +889,3 @@ n' = n - n_0=n-\left\lceil \frac{n}{2}\right\rceil =\left\lfloor \frac{n}{2}\rig
 n_h=n'_{h-1} \leq \left\lceil \frac{n'}{2^h}\right\rceil=\left\lceil \frac{\left\lfloor n/2 \right\rfloor}{2^h}\right\rceil \leq \left\lceil \frac{n/2}{2^h}\right\rceil=\left\lceil \frac{n}{2^{h+1}} \right\rceil
 \end{displaymath}
 بدین ترتیب اثبات کامل است.
-
-\سوال فرض کنید برای پیاده‌سازی درخت‌های {$k$}تایی از گره‌هایی با قالب نشان داده شده در شکل {\ref{ch5:fig:treeNodeStruct}} استفاده کرده‌ایم. در چنین ساختاری دارای یک فیلد داده‌ای و {$k$} فیلد اشاره‌گر برای اشاره به هر یک از {$k$} زیردرخت یک گره هستیم. اگر دارای {$n$} گره در چنین درختی باشیم آنگاه تعداد اشاره‌گرهای تهی چه تعداد خواهد بود؟
-\begin{figure}
-\begin{center}
-\scalebox{0.8}
-{
-\begin{pspicture}(0,-1.87)(12.255546,1.87)
-\psframe[linewidth=0.04,dimen=outer](8.26,1.11)(4.06,0.31)
-\psline[linewidth=0.04cm](4.84,1.07)(4.84,0.33)
-\psline[linewidth=0.04cm](7.46,1.09)(7.46,0.35)
-\pstriangle[linewidth=0.04,dimen=outer](1.33,-1.87)(2.66,1.34)
-\pstriangle[linewidth=0.04,dimen=outer](7.95,-1.87)(2.66,1.34)
-\psframe[linewidth=0.04,dimen=outer](8.26,1.87)(4.06,1.07)
-\usefont{T1}{ptm}{m}{n}
-\rput(6.1545315,1.46){\rl{فیلد داده}}
-\psdots[dotsize=0.14](4.46,0.73)
-\psdots[dotsize=0.14](7.86,0.71)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.42,0.71)(1.38,-0.45)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(7.04,0.69)(7.96,-0.47)
-\usefont{T1}{ptm}{m}{n}
-\rput(1.33625,-1.34){$T_1$}
-\usefont{T1}{ptm}{m}{n}
-\rput(8.12625,-1.34){$T_{k-1}$}
-\psline[linewidth=0.04cm,linestyle=dotted,dotsep=0.16cm](5.72,-1.07)(6.6,-1.07)
-\pstriangle[linewidth=0.04,dimen=outer](4.35,-1.87)(2.66,1.34)
-\usefont{T1}{ptm}{m}{n}
-\rput(4.3907814,-1.34){$T_2$}
-\psline[linewidth=0.04cm](5.64,1.09)(5.64,0.35)
-\psdots[dotsize=0.14](5.24,0.71)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.24,0.71)(4.4,-0.43)
-\psline[linewidth=0.04cm](6.64,1.05)(6.64,0.31)
-\psdots[dotsize=0.14](7.04,0.69)
-\pstriangle[linewidth=0.04,dimen=outer](10.95,-1.87)(2.66,1.34)
-\usefont{T1}{ptm}{m}{n}
-\rput(10.999375,-1.34){$T_k$}
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(7.84,0.73)(10.9,-0.47)
-\psline[linewidth=0.04cm,linestyle=dotted,dotsep=0.16cm](5.88,0.73)(6.46,0.73)
-\end{pspicture} 
-}\caption{ساختار یک گره در یک درخت {$k$}تایی}\label{ch5:fig:treeNodeStruct}
-\end{center}
-\end{figure}
-
-\پاسخ
-
-در چنین ساختاری هر گره دارای {$k$} اشاره‌گر است. در نتیجه هنگامی که {$n$} گره در درخت وجود دارد دارای {$nk$} اشاره‌گر هستیم. از این تعداد اشاره‌گر فقط {$n-1$} اشاره‌گر مورد استفاده قرار می‌گیرند زیرا برای اشاره به هر یک از گره‌ها به جز گره ریشه به یک اشاره‌گر نیاز است. اگر تعداد کل اشاره‌گرها را از تعداد اشاره‌گرهای مورد استفاده کم کنیم خواهیم داشت:
-\begin{displaymath}
-nk-(n-1)=nk-n+1=n(k-1)+1
-\end{displaymath}
-به این ترتیب تعداد اشاره‌گرهای تهی برابر با {$n(k-1)+1$} است.
