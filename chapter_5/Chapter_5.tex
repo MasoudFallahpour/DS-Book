@@ -30,7 +30,7 @@
 
 \begin{figure}[H]
 \begin{center}
-\scalebox{1}
+\scalebox{0.9}
 {
 \begin{pspicture}(0,-2.355)(9.5275,2.375)
 \pscircle[linewidth=0.04,dimen=outer](3.65,1.235){0.41}
@@ -379,6 +379,8 @@ T(3)=\frac{\displaystyle\binom{6}{3}}{4}=\frac{20}{4}=5
 
 \پاسخ
 
+شبه کد الگوریتم یافتن تعداد سطوح یک درخت دودویی در الگوریتم {\eqref{ch5:alg:treeLevel}} نشان داده شده است. اگر درخت دودویی ورودی تهی باشد مقدار صفر به عنوان تعداد سطوح درخت بازگردانده می‌شود. در غیر این صورت به صورت بازگشتی به ترتیب تعداد سطوح زیردرخت چپ و راست ریشه به دست آورده می‌شود. سپس تعداد سطوح زیردرخت چپ و راست با یکدیگر مقایسه شده و مقدار بزرگتر با عدد یک جمع شده و در متغیر {\id{level}} قرار می‌گیرد. دلیل جمع شدن مقدار بزرگتر با عدد یک این است که با انجام دو فراخوانی‌ بازگشتی تعداد سطوح دو زیردرخت ریشه را به دست آورده‌ایم و با در نظر گرفتن گره ریشه باید یک واحد به تعداد سطوح درخت اضافه شود. در نهایت متغیر {\id{level}} که بیانگر تعداد سطوح درخت است به عنوان خروجی الگوریتم برگشت داده می‌شود.  
+
 \begin{algorithm}
 \caption{به دست آوردن تعداد سطوح یک درخت دودویی}\label{ch5:alg:treeLevel}
 \begin{latin}
@@ -390,10 +392,11 @@ T(3)=\frac{\displaystyle\binom{6}{3}}{4}=\frac{20}{4}=5
 		\State	$\id{leftLevel} \gets \bcall{TreeLevel}{\attrib{t}{\id{leftChild}}}$
 		\State	$\id{rightLevel} \gets \bcall{TreeLevel}{\attrib{t}{\id{rightChild}}}$			
 		\If{$\id{leftLevel} > \id{rightLevel}$}
-			\State	\Return	$(\id{leftLevel} + 1)$
+			\State	$\id{level}\gets\id{leftLevel} + 1$
 		\Else
-			\State	\Return $(\id{rightLevel} + 1)$
+			\State	$\id{level}\gets\id{rightLevel} + 1$
 		\EndIf
+		\State	\Return	\id{level}
 \EndFunction
 \end{algorithmic}
 \end{latin}
