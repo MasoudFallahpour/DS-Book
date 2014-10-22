@@ -16,6 +16,10 @@
 
 \متن‌سیاه{درخت {$\mathbf{k}$}تایی پر}: درخت {$T$} یک درخت {$k$}تایی پر است اگر تمام گره‌های غیر برگ آن دارای دقیقا {$k$} فرزند باشند و همچنین تمام گره‌های برگ آن در یک سطح قرار گرفته باشند.
 
+\متن‌سیاه{ساختار گره‌ی درخت دودویی}: ساختار گره‌ی یک درخت دودویی دارای سه فیلد {\id{data}}، {\id{leftChild}} و {\id{rightChild}} است که از اولین فیلد برای نگهداری مقدار داده‌ای و از فیلدهای دوم و سوم به ترتیب برای اشاره به فرزند چپ و راست گره استفاده می‌شود.
+
+\متن‌سیاه{ساختار گره‌ی درخت عمومی}: ساختار گره‌ی یک درخت عمومی دارای سه فیلد {\id{data}}، {\id{next}} و {\id{children}} است که از فیلد اول برای نگهداری مقدار داده‌ای، از فیلد دوم برای اشاره به همنیای سمت راست و از فیلد سوم برای اشاره به لیست فرزندان گره استفاده می‌شود.
+
 \قسمت{منابع مطالعاتی}
 
 برای مطالعه در مورد تعاریف و فرمول‌های درخت و همچنین درخت‌های عمومی و دودویی می‌توانید به فصل هفتم {\cite{ebrahimi}} و فصل پنجم {\cite{horowitz}} مراجعه کنید. برای کسب اطلاعات در مورد درخت‌های هیپ فصل نهم {\cite{ebrahimi}} و فصل ششم {\cite{weiss}} منابع مناسبی هستند.
@@ -161,25 +165,35 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \پاسخ
 
-شبه کد تابعی بازگشتی که در درخت {$t$} به دنبال عنصری با مقدار {$x$} می‌گردد در الگوریتم {\eqref{ch5:alg:findx}} آمده است. در ادامه به بررسی روش عملکرد این تابع اشاره خواهد شد.
-\begin{algorithm}
-\caption{یافتن عنصری با مقدار مشخص در یک درخت عمومی}\label{ch5:alg:findx}
+شبه کد تابعی بازگشتی که در درخت {\id{gTree}} به دنبال عنصری با مقدار {$x$} می‌گردد در الگوریتم {\eqref{ch5:alg:findx}} آمده است. در ادامه به بررسی روش عملکرد این تابع پرداخته می‌شود.
+\begin{algorithm}[H]
+\caption{بررسی وجود عنصری با مقدار مشخص در یک درخت عمومی}\label{ch5:alg:findx}
 \begin{latin}
 \begin{algorithmic}[1]
-\Function{Find}{$t,x$}
-		\If{$t \isequal \const{null}$}
+\Function{Find}{$\id{gTree},x$}
+		\If{$\id{gTree} \isequal \const{null}$}
 				\State	\Return
 		\EndIf
-		\If{$\attrib{t}{data} \isequal x$}
+		\If{$\attrib{\id{gTree}}{\id{data}} \isequal x$}
 				\State	\Return \const{true}
 		\EndIf
 		\State	$\id{found} \gets \const{false}$
-		\State	$p \gets \attrib{t}{\id{children}}$
+		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$
 		\While{$p \neq \const{null} \And \id{found} \isequal \const{false}$}
-				\State	$\id{found} \gets \Call{Find}{\attrib{p}{\id{data}},x}$
+				\State	$\id{found} \gets \Call{Find}{p,x}$
 				\State	$p \gets \attrib{p}{\id{next}}$
 		\EndWhile
-		\State	\Return \id{found}
+		\State	\Return \id{found}	
+		\algstore{findBrk}
+\end{algorithmic}
+\end{latin}
+\end{algorithm}
+
+\begin{algorithm}
+\caption*{بررسی وجود عنصری با مقدار مشخص در یک درخت عمومی - ادامه}
+\begin{latin}
+\begin{algorithmic}[1]
+		\algrestore{findBrk}
 \EndFunction
 \end{algorithmic}
 \end{latin}
@@ -191,29 +205,39 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \پاسخ
 
-شبه کد تابعی بازگشتی که در درخت {$t$} به دنبال پدر گره‌‌‌ای می‌گردد که {$n$} به آن اشاره دارد در الگوریتم {\eqref{ch5:alg:findParent}} آورده شده است.
+شبه کد تابعی بازگشتی که در درخت {\id{gTree}} به دنبال پدر گره‌‌‌ای می‌گردد که {$n$} به آن اشاره دارد در الگوریتم {\eqref{ch5:alg:findParent}} آورده شده است.
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{یافتن پدر یک گره‌ی خاص در یک درخت عمومی}\label{ch5:alg:findParent}
 \begin{latin}
 \begin{algorithmic}[1]
-\Function{FindParent}{$t,n$}
-		\If{$t \isequal \const{null}$}
+\Function{FindParent}{$\id{gTree},n$}
+		\If{$\id{gTree} \isequal \const{null}$}
 				\State	\Return \const{null}
 		\EndIf
-		\State	$p \gets \attrib{t}{\id{children}}$\label{ch5:alg:ln:fndpFrstWhBeg}
+		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$\label{ch5:alg:ln:fndpFrstWhBeg}
 		\While{$p \neq \const{null}$}
 				\If{$\attrib{p}{\id{data}} \isequal n$}
 						\State	\Return $t$
 				\EndIf
 				\State	$p \gets \attrib{p}{\id{next}}$
 		\EndWhile\label{ch5:alg:ln:fndpFrstWhEnd}
-		\State	$p \gets \attrib{t}{\id{children}}$\label{ch5:alg:ln:fndpSecWhBeg}		
+		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$\label{ch5:alg:ln:fndpSecWhBeg}		
 		\While{$p \neq \const{null}$}
-				\State	$q \gets \Call{FindParent}{\attrib{p}{\id{data}},n}$
+				\State	$q \gets \Call{FindParent}{p,n}$
 				\If{$q \neq \const{null}$}
 						\State	\Return $q$
 				\EndIf
+		\algstore{findParentBrk}
+\end{algorithmic}
+\end{latin}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\caption*{یافتن پدر یک گره‌ی خاص در یک درخت عمومی - ادامه}
+\begin{latin}
+\begin{algorithmic}[1]
+				\algrestore{findParentBrk}
 				\State	$p \gets \attrib{p}{\id{next}}$
 		\EndWhile\label{ch5:alg:ln:fndpSecWhEnd}
 		\State	\Return \const{null}
@@ -222,42 +246,52 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \end{latin}
 \end{algorithm}
 
-اگر درخت {$t$} تهی باشد آنگاه عمل خاصی لازم نیست و مقدار تهی برگشت داده می‌شود. در صورتی که درخت {$t$} تهی نباشد آنگاه باید در فرزندان گره ریشه به دنبال عنصری بگردیم که {$n$} به آن اشاره دارد. اگر چنین عنصری یافت شد آنگاه مقدار {$t$} به عنوان خروجی بازگردانده می‌شود و به این معنی است که گره‌ای که {$n$} به آن اشاره دارد یکی از فرزندان گره‌ی ریشه است و در نتیجه گره‌ی ریشه پدر آن است (خطوط {\ref{ch5:alg:ln:fndpFrstWhBeg}} تا {\ref{ch5:alg:ln:fndpFrstWhEnd}}). اگر عنصری که {$n$} به آن اشاره دارد یکی از فرزندان گره‌ی ریشه نباشد آنگاه باید به صورت بازگشتی در فرزندان گره‌ی ریشه به دنبال عنصر {$n$} بگردیم (خطوط {\ref{ch5:alg:ln:fndpSecWhBeg}} تا {\ref{ch5:alg:ln:fndpSecWhEnd}}). اگر به خط انتهایی تابع برسیم بدین معنی است که قادر به یافتن عنصری که {$n$} به آن اشاره دارد در درخت {$t$} نبوده‌ایم و در نتیجه مقدار تهی به عنوان خروجی تابع برگردانده می‌شود.
+اگر درخت {\id{gTree}} تهی باشد آنگاه عمل خاصی لازم نیست و مقدار تهی برگشت داده می‌شود. در صورتی که درخت {\id{gTree}} تهی نباشد آنگاه باید در فرزندان گره ریشه به دنبال عنصری بگردیم که {$n$} به آن اشاره دارد. اگر چنین عنصری یافت شد آنگاه مقدار {\id{gTree}} به عنوان خروجی بازگردانده می‌شود و به این معنی است که گره‌ای که {$n$} به آن اشاره دارد یکی از فرزندان گره‌ی ریشه است و در نتیجه گره‌ی ریشه پدر آن است (خطوط {\ref{ch5:alg:ln:fndpFrstWhBeg}} تا {\ref{ch5:alg:ln:fndpFrstWhEnd}}). اگر عنصری که {$n$} به آن اشاره دارد یکی از فرزندان گره‌ی ریشه نباشد آنگاه باید به صورت بازگشتی در فرزندان گره‌ی ریشه به دنبال عنصر {$n$} بگردیم (خطوط {\ref{ch5:alg:ln:fndpSecWhBeg}} تا {\ref{ch5:alg:ln:fndpSecWhEnd}}). اگر به خط انتهایی تابع برسیم بدین معنی است که قادر به یافتن عنصری که {$n$} به آن اشاره دارد در درخت {\id{gTree}} نبوده‌ایم و در نتیجه مقدار تهی به عنوان خروجی تابع برگردانده می‌شود.
 
-\سوال تابعی بازگشتی بنویسید که با دریافت یک درخت عمومی، پیاده‌سازی شده توسط لیست عمومی، درخت دودویی معادلش را برگرداند. 
+\سوال تابعی بازگشتی بنویسید که یک درخت عمومی، پیاده‌سازی شده توسط لیست عمومی، را به عنوان ورودی دریافت کرده و به عنوان خروجی، درختی دودویی را برگرداند که با استفاده از روش فرزند چپ - همنیای راست\پانویس{{\lr{Left child - right sibling}}} از درخت عمومی ورودی به دست آمده است.
 
 \پاسخ
 
-تابع بازگشتی مورد نظر در قالب الگوریتم {\eqref{ch5:alg:cnvGen2Bin}} آورده شده است.
+تابع بازگشتی برای تبدیل درخت عمومی به درخت دودویی با استفاده از روش فرزند چپ - همنیای راست در قالب الگوریتم {\eqref{ch5:alg:cnvGen2Bin}} نشان داده شده است.
 
-\begin{algorithm}
-\caption{تبدیل درخت عمومی به درخت دودویی معادل}\label{ch5:alg:cnvGen2Bin}
+\begin{algorithm}[H]
+\caption{تبدیل درخت عمومی به درخت دودویی با روش فرزند چپ - همنیای راست}\label{ch5:alg:cnvGen2Bin}
 \begin{latin}
 \begin{algorithmic}[1]
-\Function{GenToBin}{$\id{genTree}$}
-		\If{$\id{genTree} \isequal \const{null}$}
+\Function{Gen2Bin}{$\id{gTree}$}
+		\If{$\id{gTree} \isequal \const{null}$}
 				\State	\Return \const{null}
 		\EndIf
 		\State	\bcall{New}{$q$}
-		\State	$\attrib{q}{data} \gets \attrib{\id{genTree}}{\id{data}}$
-		\State	$m \gets \attrib{\id{genTree}}{\id{link}}$
+		\State	$\attrib{q}{data} \gets \attrib{\id{gTree}}{\id{data}}$
+		\State	$m \gets \attrib{\id{gTree}}{\id{children}}$
 		\If{$m \isequal \const{null}$}
 				\State	$\attrib{q}{\id{leftChild}} \gets \const{null}$
 				\State	$\attrib{q}{\id{rightChild}} \gets \const{null}	$
-		\Else
-				\State	$\attrib{q}{\id{leftChild}} \gets \Call{GenToBin}{\attrib{m}{\id{ChildrenList}}}$ 
-				\State	$p \gets \attrib{q}{\id{leftChild}}$
-				\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
-				\State	$m \gets \attrib{m}{\id{link}}$
-				\While{$m \neq \const{null}$}
-						\State	$\attrib{p}{\id{rightChild}} \gets \Call{GenToBin}{\attrib{m}{\id{ChildrenList}}}$ 
-						\State	$p \gets \attrib{p}{\id{rightChild}}$
-						\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
-						\State	$m \gets \attrib{m}{\id{link}}$
-				\EndWhile
-		\EndIf		
+				\State	\Return $q$
+		\EndIf	
+		\algstore{gen2binBrk}
+\end{algorithmic}
+\end{latin}
+\end{algorithm}
+
+\begin{algorithm}
+\caption*{تبدیل درخت عمومی به درخت دودویی با روش فرزند چپ - همنیای راست - ادامه}
+\begin{latin}
+\begin{algorithmic}[1]
+		\algrestore{gen2binBrk}
+		\State	$\attrib{q}{\id{leftChild}} \gets \Call{Gen2Bin}{m}$ 
+		\State	$p \gets \attrib{q}{\id{leftChild}}$		
+		\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
+		\State	$m \gets \attrib{m}{\id{next}}$			
+		\While{$m \neq \const{null}$}	
+				\State	$\attrib{p}{\id{rightChild}} \gets \Call{Gen2Bin}{m}$ 			
+				\State	$p \gets \attrib{p}{\id{rightChild}}$
+				\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$				
+				\State	$m \gets \attrib{m}{\id{next}}$
+		\EndWhile		
 		\State	\Return $q$		
-\EndFunction
+\EndFunction	
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
@@ -268,7 +302,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 در صورتی که درخت دودویی مورب به راست و هر سطح از درخت دارای تنها یک گره باشد آنگاه بیشترین تعداد خانه مورد نیاز خواهد بود. شکل {\eqref{ch5:fig:movarabBinTree}} نشان دهنده‌ی یک درخت دودویی مورب به راست است.
 
-\begin{figure}
+\begin{figure}[H]
 \begin{center}
 \scalebox{0.75}
 {
@@ -342,7 +376,9 @@ T(3)=\frac{\displaystyle\binom{6}{3}}{4}=\frac{20}{4}=5
 این درخت‌ها در شکل {\eqref{ch5:fig:3nodesBinTrees}} نشان داده شده‌اند. به دنباله‌ی اعداد حاصل از رابطه‌ی {\eqref{ch5:eqn:catalanNonRec}}، دنباله اعداد کاتالان گفته می‌شود.
 
  
- \سوال تابعی بازگشتی بنویسید که با دریافت درخت دودوییِ معادلِ یک درخت عمومی، درخت عمومی را بازسازی کند. تنها ورودی تابع شما باید اشاره‌گر به ریشه درخت دودویی باشد.
+\سوال درختی دودویی را در نظر بگیرید که به روش فرزند چپ - همنیای راست از یک درخت عمومی به دست آمده است. تابعی بازگشتی بنویسید که چنین درخت دودویی را دریافت کرده و به عنوان خروجی، درخت عمومی معادل با درخت دودویی را بازگرداند.
+ 
+ تابعی بازگشتی بنویسید که با دریافت درخت دودوییِ معادلِ یک درخت عمومی، درخت عمومی را بازسازی کند. تنها ورودی تابع شما باید اشاره‌گر به ریشه درخت دودویی باشد.
 
 \پاسخ
 
