@@ -86,34 +86,35 @@
 با در نظر گرفتن شکل {\eqref{ch5:fig:kAryFullTree}} تعداد کل گره‌ها، که آن را با {$n$} نمایش می‌دهیم، در یک درخت {$k$}تایی پر به عمق {$m$} به صورت زیر به دست می‌آید:
 \begin{align}
 n &= 1+k+k^2+k^3+\cdots + k^m\nonumber\\
-   &=\frac{k^{m+1}-1}{k-1}\label{ch5:eqn:nNodes}
+   &=\frac{k^{m+1}-1}{k-1}\label{ch5:eqn:kAryFullTreeTotalNodes}
 \end{align}
-اگر در عبارت {$\lfloor \log_k n \rfloor$} به جای {$n$}، مقدار به دست آمده از {\eqref{ch5:eqn:nNodes}} را قرار دهیم باید داشته باشیم:
+اگر در عبارت {$\lfloor \log_k n \rfloor$} به جای {$n$}، مقدار به دست آمده از {\eqref{ch5:eqn:kAryFullTreeTotalNodes}} را قرار دهیم باید داشته باشیم:
 \begin{equation}
-\left\lfloor \log_k \frac{k^{m+1}-1}{k-1} \right\rfloor=m\label{ch5:eqn:treeHeight}
+\left\lfloor \log_k \frac{k^{m+1}-1}{k-1} \right\rfloor = m\label{ch5:eqn:kAryFullTreeHeight}
 \end{equation}
-به این ترتیب باید ثابت کنیم تساوی {\eqref{ch5:eqn:treeHeight}} برقرار است. در ادامه، به اثبات برقراری این تساوی می‌پردازیم.
+به این ترتیب باید ثابت کنیم تساوی {\eqref{ch5:eqn:kAryFullTreeHeight}} برقرار است. در ادامه، به اثبات برقراری این تساوی می‌پردازیم.
 
-با در نظر گرفتن خاصیت تابع جزء صحیح می‌توان تساوی {\eqref{ch5:eqn:treeHeight}} را به صورت زیر نوشت:
+با در نظر گرفتن خاصیت تابع جزء صحیح می‌توان تساوی {\eqref{ch5:eqn:kAryFullTreeHeight}} را به صورت زیر نوشت:
 \begin{equation}
-m \leq \log_k \frac{k^{m+1}-1}{k-1} < m+1\label{ch5:eqn:treeHeightIneq1}
+m \leq \log_k \frac{k^{m+1}-1}{k-1} < m+1\label{ch5:eqn:kAryFullTreeHeightIneq1}
 \end{equation}
-اگر طرفین نامعادله {\eqref{ch5:eqn:treeHeightIneq1}} را به عنوان توان عدد {$k$} در نظر بگیریم خواهیم داشت:
+اگر طرفین نامعادله {\eqref{ch5:eqn:kAryFullTreeHeightIneq1}} را به عنوان توان عدد {$k$} در نظر بگیریم خواهیم داشت:
 \begin{equation}
-k^m \leq k^{\log_k \frac{k^{m+1}-1}{k-1}} < k^{m+1} \Rightarrow k^m \leq \frac{k^{m+1}-1}{k-1} < k^{m+1}\label{ch5:eqn:treeHeightIneq2}
+k^m \leq k^{\log_k \frac{k^{m+1}-1}{k-1}} < k^{m+1} \Rightarrow k^m \leq \frac{k^{m+1}-1}{k-1} < k^{m+1}\label{ch5:eqn:kAryFullTreeHeightIneq2}
 \end{equation}
 
-با ضرب طرفین نامعادله {\eqref{ch5:eqn:treeHeightIneq2}} در {$k-1$} داریم:
+با ضرب طرفین نامعادله {\eqref{ch5:eqn:kAryFullTreeHeightIneq2}} در {$k-1$} داریم:
 \begin{equation}
-k^m(k-1) \leq k^{m+1}-1 < k^{m+1}(k-1)\label{ch5:eqn:treeHeightIneq3}
+k^m(k-1) \leq k^{m+1}-1 < k^{m+1}(k-1)\label{ch5:eqn:kAryFullTreeHeightIneq3}
 \end{equation}
-با ساده‌سازی نامعادله {\eqref{ch5:eqn:treeHeightIneq3}} به عبارت زیر می‌رسیم:
+با ساده‌سازی نامعادله {\eqref{ch5:eqn:kAryFullTreeHeightIneq3}} به عبارت زیر می‌رسیم:
 \begin{equation}
-k^{m+1}-k^m \leq k^{m+1}-1 < k^{m+1}(k-1)\label{ch5:eqn:treeHeightIneq4}
+k^{m+1}-k^m \leq k^{m+1}-1 < k^{m+1}(k-1)\label{ch5:eqn:kAryFullTreeHeightIneq4}
 \end{equation}
-درستی نامعادله {\ref{ch5:eqn:treeHeightIneq4}} را می‌توان با استقرا بر روی {$m$} نشان داد و اثبات را کامل کرد. انجام استقرا به خواننده واگذار می‌شود.
+درستی نامعادله {\eqref{ch5:eqn:kAryFullTreeHeightIneq4}} را می‌توان با استقرا بر روی {$m$} نشان داد و اثبات را کامل کرد. انجام استقرا به خواننده واگذار می‌شود.
 
-\سوال فرض کنید برای پیاده‌سازی درخت‌های {$k$}تایی از گره‌هایی با قالب نشان داده شده در شکل {\eqref{ch5:fig:treeNodeStruct}} استفاده شده است. در چنین ساختاری دارای یک فیلد داده‌ای و {$k$} فیلد اشاره‌گر برای اشاره به هر یک از {$k$} زیردرخت یک گره هستیم. اگر دارای {$n$} گره در چنین درختی باشیم آنگاه تعداد اشاره‌گرهای تهی چه تعداد خواهد بود؟
+\سوال فرض کنید برای پیاده‌سازی درخت‌های {$k$}تایی از گره‌هایی با قالب نشان داده شده در شکل {\eqref{ch5:fig:kAryTreeNodeStruct}} استفاده شده است. در چنین ساختاری دارای یک فیلد داده‌ای و {$k$} فیلد اشاره‌گر برای اشاره به هر یک از {$k$} زیردرخت یک گره هستیم. اگر دارای {$n$} گره در چنین درختی باشیم آنگاه تعداد اشاره‌گرهای تهی چه تعداد خواهد بود؟
+
 \begin{figure}[H]
 \begin{center}
 \scalebox{0.8}
@@ -147,7 +148,7 @@ k^{m+1}-k^m \leq k^{m+1}-1 < k^{m+1}(k-1)\label{ch5:eqn:treeHeightIneq4}
 \psline[linewidth=0.04cm](5.66,1.11)(5.66,0.33)
 \end{pspicture} 
 }
-\caption{ساختار یک گره در یک درخت {$k$}تایی}\label{ch5:fig:treeNodeStruct}
+\caption{ساختار یک گره در یک درخت {$k$}تایی}\label{ch5:fig:kAryTreeNodeStruct}
 \end{center}
 \end{figure}
 
@@ -165,9 +166,9 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \پاسخ
 
-شبه کد تابعی بازگشتی که در درخت {\id{gTree}} به دنبال عنصری با مقدار {$x$} می‌گردد در الگوریتم {\eqref{ch5:alg:findx}} آمده است. در ادامه به بررسی روش عملکرد این تابع پرداخته می‌شود.
+شبه کد تابعی بازگشتی که در درخت {\id{gTree}} به دنبال عنصری با مقدار {$x$} می‌گردد در الگوریتم {\eqref{ch5:alg:genTreeFind}} آمده است. در ادامه به بررسی روش عملکرد این تابع پرداخته می‌شود.
 \begin{algorithm}[H]
-\caption{بررسی وجود عنصری با مقدار مشخص در یک درخت عمومی}\label{ch5:alg:findx}
+\caption{بررسی وجود عنصری با مقدار مشخص در یک درخت عمومی}\label{ch5:alg:genTreeFind}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{Find}{$\id{gTree},x$}
@@ -201,33 +202,31 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 در ابتدا بررسی می‌شود که آیا درخت تهی است یا خیر. اگر اینگونه بود مقدار {\const{false}} به عنوان خروجی برگشت داده می‌شود. اگر درخت تهی نبود باید بررسی کرد که آیا مقدار عنصر ریشه برابر با {$x$} است یا خیر. اگر برابر بود آنگاه مقدار {\const{true}} برگشت داده می‌شود. اگر هیچ یک از دو شرط ابتدایی برقرار نبودند آنگاه باید به دنبال مقدار {$x$} در فرزندان گره ریشه و در صورت لزوم در فرزندانِ فرزندان گره ریشه و به همین ترتیب بگردیم تا یا عنصر مورد نظر پیدا شود و یا از عدم وجود آن در درخت اطمینان حاصل نماییم. جستجو در فرزندان ریشه، فرزندانِ فرزندان ریشه و ... توسط حلقه موجود در تابع به صورت بازگشتی انجام می‌شود. برای درک بهتر این الگوریتم آن را بر روی یک درخت عمومی ساده امتحان کنید.
 
-\سوال با در نظر گرفتن پیاده‌سازی درخت عمومی به کمک اشاره‌گرها و اینکه هر گره موظف است آدرس فرزندان خود را در یک لیست پیوندی نگاه دارد، تابعی بازگشتی بنویسید که اشاره‌گر به یک گره را دریافت کرده و اشاره‌گر به پدر گره‌ی ورودی را بازگرداند. تابع شما باید دارای تنها دو ورودی باشد. ورودی اول درختی است که باید جستجو در آن انجام شود و ورودی دوم گره‌ای است که قصد یافتن پدر آن را داریم.
+\سوال با در نظر گرفتن پیاده‌سازی درخت عمومی به کمک اشاره‌گرها و اینکه هر گره موظف است آدرس فرزندان خود را در یک لیست پیوندی نگاه دارد، تابعی بازگشتی بنویسید که اشاره‌گر به یک گره را دریافت کرده و اشاره‌گر به پدر گره‌ی ورودی را بازگرداند. تابع شما باید دارای تنها دو ورودی باشد. ورودی اول اشاره‌گر به ریشه‌ی درختی است که باید جستجو در آن انجام شود و ورودی دوم اشاره‌گر به گره‌ای است که قصد یافتن پدر آن را داریم.
 
 \پاسخ
 
-شبه کد تابعی بازگشتی که در درخت {\id{gTree}} به دنبال پدر گره‌‌‌ای می‌گردد که {$n$} به آن اشاره دارد در الگوریتم {\eqref{ch5:alg:findParent}} آورده شده است.
+شبه کد تابعی بازگشتی که در درخت {\id{gTree}} به دنبال پدر گره‌‌‌ای می‌گردد که {$n$} به آن اشاره دارد در الگوریتم {\eqref{ch5:alg:genTreeFindParent}} آورده شده است.
 
 \begin{algorithm}[H]
-\caption{یافتن پدر یک گره‌ی خاص در یک درخت عمومی}\label{ch5:alg:findParent}
+\caption{یافتن پدر یک گره‌ی خاص در یک درخت عمومی}\label{ch5:alg:genTreeFindParent}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{FindParent}{$\id{gTree},n$}
 		\If{$\id{gTree} \isequal \const{null}$}
 				\State	\Return \const{null}
 		\EndIf
-		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$\label{ch5:alg:ln:fndpFrstWhBeg}
+		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$\label{ch5:alg:ln:findParent1stLoopBegin}
 		\While{$p \neq \const{null}$}
-				\If{$\attrib{p}{\id{data}} \isequal n$}
+				\If{$p \isequal n$}
 						\State	\Return $t$
 				\EndIf
 				\State	$p \gets \attrib{p}{\id{next}}$
-		\EndWhile\label{ch5:alg:ln:fndpFrstWhEnd}
-		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$\label{ch5:alg:ln:fndpSecWhBeg}		
+		\EndWhile\label{ch5:alg:ln:findParent1stLoopEnd}
+		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$\label{ch5:alg:ln:findParent2ndLoopBegin}		
 		\While{$p \neq \const{null}$}
 				\State	$q \gets \Call{FindParent}{p,n}$
 				\If{$q \neq \const{null}$}
-						\State	\Return $q$
-				\EndIf
 		\algstore{findParentBrk}
 \end{algorithmic}
 \end{latin}
@@ -238,42 +237,46 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{latin}
 \begin{algorithmic}[1]
 				\algrestore{findParentBrk}
+						\State	\Return $q$
+				\EndIf				
 				\State	$p \gets \attrib{p}{\id{next}}$
-		\EndWhile\label{ch5:alg:ln:fndpSecWhEnd}
+		\EndWhile\label{ch5:alg:ln:findParent2ndLoopEnd}
 		\State	\Return \const{null}
 \EndFunction
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
 
-اگر درخت {\id{gTree}} تهی باشد آنگاه عمل خاصی لازم نیست و مقدار تهی برگشت داده می‌شود. در صورتی که درخت {\id{gTree}} تهی نباشد آنگاه باید در فرزندان گره ریشه به دنبال عنصری بگردیم که {$n$} به آن اشاره دارد. اگر چنین عنصری یافت شد آنگاه مقدار {\id{gTree}} به عنوان خروجی بازگردانده می‌شود و به این معنی است که گره‌ای که {$n$} به آن اشاره دارد یکی از فرزندان گره‌ی ریشه است و در نتیجه گره‌ی ریشه پدر آن است (خطوط {\ref{ch5:alg:ln:fndpFrstWhBeg}} تا {\ref{ch5:alg:ln:fndpFrstWhEnd}}). اگر عنصری که {$n$} به آن اشاره دارد یکی از فرزندان گره‌ی ریشه نباشد آنگاه باید به صورت بازگشتی در فرزندان گره‌ی ریشه به دنبال عنصر {$n$} بگردیم (خطوط {\ref{ch5:alg:ln:fndpSecWhBeg}} تا {\ref{ch5:alg:ln:fndpSecWhEnd}}). اگر به خط انتهایی تابع برسیم بدین معنی است که قادر به یافتن عنصری که {$n$} به آن اشاره دارد در درخت {\id{gTree}} نبوده‌ایم و در نتیجه مقدار تهی به عنوان خروجی تابع برگردانده می‌شود.
+اگر درخت {\id{gTree}} تهی باشد آنگاه عمل خاصی لازم نیست و مقدار تهی برگشت داده می‌شود. در صورتی که درخت {\id{gTree}} تهی نباشد آنگاه باید در فرزندان گره ریشه به دنبال عنصری بگردیم که {$n$} به آن اشاره دارد. اگر چنین عنصری یافت شد آنگاه مقدار {\id{gTree}} به عنوان خروجی بازگردانده می‌شود و به این معنی است که گره‌ای که {$n$} به آن اشاره دارد یکی از فرزندان گره‌ی ریشه است و در نتیجه گره‌ی ریشه پدر آن است (خطوط {\ref{ch5:alg:ln:findParent1stLoopBegin}} تا {\ref{ch5:alg:ln:findParent1stLoopEnd}}). اگر عنصری که {$n$} به آن اشاره دارد یکی از فرزندان گره‌ی ریشه نباشد آنگاه باید به صورت بازگشتی در فرزندان گره‌ی ریشه به دنبال عنصر {$n$} بگردیم (خطوط {\ref{ch5:alg:ln:findParent2ndLoopBegin}} تا {\ref{ch5:alg:ln:findParent2ndLoopEnd}}). اگر به خط انتهایی تابع برسیم بدین معنی است که قادر به یافتن عنصری که {$n$} به آن اشاره دارد در درخت {\id{gTree}} نبوده‌ایم و در نتیجه مقدار تهی به عنوان خروجی تابع برگردانده می‌شود.
 
 \سوال تابعی بازگشتی بنویسید که یک درخت عمومی، پیاده‌سازی شده توسط لیست عمومی، را به عنوان ورودی دریافت کرده و به عنوان خروجی، درختی دودویی را برگرداند که با استفاده از روش فرزند چپ - همنیای راست\پانویس{{\lr{Left child - right sibling}}} از درخت ورودی به دست آمده است.
 
 \پاسخ
 
-در ابتدا ببینیم از چه نوع درختی باید به چه نوع درختی برسیم. درخت سه تایی نشان داده شده در شکل {\eqref{ch5:fig:threeAryTree}} را در نظر بگیرید. اگر از روش لیست عمومی برای نمایش این درخت استفاده کنیم آنگاه به درخت عمومی نشان داده شده در شکل {\eqref{ch5:fig:generalTree}} می‌رسیم.
+در ابتدا ببینیم از چه نوع درختی باید به چه نوع درختی برسیم. درخت سه تایی نشان داده شده در شکل {\eqref{ch5:fig:3AryTree}} را در نظر بگیرید. اگر از روش لیست عمومی برای نمایش این درخت استفاده کنیم آنگاه به درخت عمومی نشان داده شده در شکل {\eqref{ch5:fig:genTree}} می‌رسیم.
 
 \begin{figure}[H]
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/three_ary_tree.pdf}
-\caption{یک درخت سه تایی}\label{ch5:fig:threeAryTree}
+\caption{یک درخت سه تایی}\label{ch5:fig:3AryTree}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/general_tree.pdf}
-\caption{نمایش درخت شکل {\eqref{ch5:fig:threeAryTree}} با استفاده از لیست عمومی}\label{ch5:fig:generalTree}
+\caption{نمایش درخت شکل {\eqref{ch5:fig:3AryTree}} با استفاده از لیست عمومی}\label{ch5:fig:genTree}
 \end{center}
 \end{figure}
 
-الگوریتم ایجاد درخت دودویی از روی درخت عمومی، باید اشاره‌گر به درختی مانند آنچه در شکل {\eqref{ch5:fig:generalTree}} نشان داده شده است را دریافت کند و با استفاده از روش فرزند چپ - همنیای راست درختی دودویی با ساختاری که در شکل {\eqref{ch5:fig:lcrsBinTree}} نشان داده شده است را به عنوان خروجی بازگرداند.
+الگوریتم ایجاد درخت دودویی از روی درخت عمومی، باید اشاره‌گر به درختی مانند آنچه در شکل {\eqref{ch5:fig:genTree}} نشان داده شده است را دریافت کند و با استفاده از روش فرزند چپ - همنیای راست درختی دودویی با ساختاری که در شکل {\eqref{ch5:fig:lcrsBinTree}} نشان داده شده است را به عنوان خروجی بازگرداند.
 
 \begin{figure}
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/left_child_right_sibling_binary_tree.pdf}
-\caption{درخت دودویی حاصل از اجرای الگوریتم فرزند چپ - همنیای راست بر روی درخت شکل {\eqref{ch5:fig:threeAryTree}}}\label{ch5:fig:lcrsBinTree}
+\caption{%
+درخت دودویی حاصل از اجرای الگوریتم فرزند چپ - همنیای راست بر روی درخت شکل {\eqref{ch5:fig:3AryTree}}
+}\label{ch5:fig:lcrsBinTree}
 \end{center}
 \end{figure}
 
@@ -297,8 +300,6 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 		\EndIf\label{ch4:alg:ln:oneNodeGTreeEnd}
 		\State	$\attrib{q}{\id{leftChild}} \gets \Call{Gen2Bin}{m}$\label{ch4:alg:ln:Gen2BinRecCasePt1Begin}
 		\State	$p \gets \attrib{q}{\id{leftChild}}$
-		\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
-		\State	$m \gets \attrib{m}{\id{next}}$\label{ch4:alg:ln:Gen2BinRecCasePt1End}
 		\algstore{gen2binBrk}
 \end{algorithmic}
 \end{latin}
@@ -308,7 +309,9 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \caption*{تبدیل درخت عمومی به درخت دودویی با روش فرزند چپ - همنیای راست - ادامه}
 \begin{latin}
 \begin{algorithmic}[1]
-		\algrestore{gen2binBrk}	
+		\algrestore{gen2binBrk}
+		\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
+		\State	$m \gets \attrib{m}{\id{next}}$\label{ch4:alg:ln:Gen2BinRecCasePt1End}
 		\While{$m \neq \const{null}$}\label{ch4:alg:ln:Gen2BinRecCasePt2Begin}
 				\State	$\attrib{p}{\id{rightChild}} \gets \Call{Gen2Bin}{m}$
 				\State	$p \gets \attrib{p}{\id{rightChild}}$
@@ -329,7 +332,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 در انتهای اجرای الگوریتم اشاره‌گر {$q$} که به ریشه‌ی درخت دودویی ایجاد شده از روی درخت عمومی ورودی اشاره دارد به عنوان خروجی الگوریم برگشت داده می‌شود.
 
-شکل‌ {\eqref{ch5:fig:lcrs}} روند ایجاد درخت دودویی پس از مراحل مختلف اجرای الگورریتم {\bcall{Gen2Bin}{}} بر روی درخت شکل  {\eqref{ch5:fig:threeAryTree}} را نشان می‌دهد.
+شکل‌ {\eqref{ch5:fig:lcrs}} روند ایجاد درخت دودویی پس از مراحل مختلف اجرای الگورریتم {\bcall{Gen2Bin}{}} بر روی درخت شکل  {\eqref{ch5:fig:3AryTree}} را نشان می‌دهد.
 
 \begin{figure}
 \begin{center}
@@ -338,15 +341,15 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 ]{\includegraphics[scale=0.33]{figs/ch5/lcrs_1.pdf}\label{ch5:fig:lcrs1}}\qquad
 \subfloat[%
 درخت دودویی پس از اجرای خطوط {\ref{ch4:alg:ln:Gen2BinRecCasePt1Begin}} تا {\ref{ch4:alg:ln:Gen2BinRecCasePt1End}}
-]{\includegraphics[scale=0.33]{figs/ch5/lcrs_2.pdf}\label{ch5:fig:lcrs2}}\\[0.1cm]
+]{\includegraphics[scale=0.33]{figs/ch5/lcrs_2.pdf}\label{ch5:fig:lcrs2}}\\[0.2cm]
 \subfloat[%
 درخت دودویی پس از اجرای دور اول حلقه‌
 ]{\includegraphics[scale=0.33]{figs/ch5/lcrs_3.pdf}\label{ch5:fig:lcrs3}}\qquad
 \subfloat[%
-درخت دودویی نهایی پس از خاتمه‌ی دور دوم و آخر حلقه
+درخت دودویی پس از خاتمه‌ی دور دوم و آخر حلقه
 ]{\includegraphics[scale=0.33]{figs/ch5/lcrs_4.pdf}\label{ch5:fig:lcrs4}}
 \caption{%
-روند ایجاد درخت دودویی با اجرای الگوریتم {\lr{\textsc{Gen2Bin}}} بر روی درخت عمومی شکل {\eqref{ch5:fig:threeAryTree}}
+روند ایجاد درخت دودویی با اجرای الگوریتم {\lr{\textsc{Gen2Bin}}} بر روی درخت عمومی شکل {\eqref{ch5:fig:3AryTree}}
 }\label{ch5:fig:lcrs}
 \end{center}
 \end{figure}
