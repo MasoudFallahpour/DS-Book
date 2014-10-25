@@ -32,8 +32,7 @@
 \usepackage{pstricks}
 
 % This package is used to customize the caption of float environments.
-\usepackage[font=footnotesize]{caption}
-\captionsetup{labelformat=parens,labelfont={bf},margin=1cm,font=footnotesize}
+\usepackage[labelformat=parens,labelfont={bf},margin=1cm,font=footnotesize]{caption}
 
 % This package is used to reset footnote counter for each new page.
 \usepackage{zref-perpage} 
@@ -58,6 +57,10 @@
 
 \usepackage{pdfpages}
 
+\usepackage{tocbibind}
+
+\usepackage[font=footnotesize]{subfig}
+
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
@@ -65,8 +68,6 @@
 	pdftitle={Questions and Answers of Data Structures},
 	pdfauthor={Masood Fallahpoor}
 }
-
-\usepackage{tocbibind}
 
 % Package for typsetting in Persian.
 \usepackage{xepersian}
