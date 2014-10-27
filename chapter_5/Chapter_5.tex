@@ -24,7 +24,7 @@
 
 برای مطالعه در مورد تعاریف و فرمول‌های درخت و همچنین درخت‌های عمومی و دودویی می‌توانید به فصل هفتم {\cite{ebrahimi}} و فصل پنجم {\cite{horowitz}} مراجعه کنید. برای کسب اطلاعات در مورد درخت‌های هیپ فصل نهم {\cite{ebrahimi}} و فصل ششم {\cite{weiss}} منابع مناسبی هستند.
 
-\قسمت{فرمول‌های درخت}
+\قسمت{روابط حاکم بر درخت‌ها}
 
 \سوال ثابت کنید عمق یک درخت {$k$}تایی پر با {$n$} گره، برابر با {$\lfloor \log_k n \rfloor$} است.
 
@@ -113,6 +113,70 @@ k^{m+1}-k^m \leq k^{m+1}-1 < k^{m+1}(k-1)\label{ch5:eqn:kAryFullTreeHeightIneq4}
 \end{equation}
 درستی نامعادله {\eqref{ch5:eqn:kAryFullTreeHeightIneq4}} را می‌توان با استقرا بر روی {$m$} نشان داد و اثبات را کامل کرد. انجام استقرا به خواننده واگذار می‌شود.
 
+\سوال اگر {$n_0$} تعداد گره‌های برگ و {$n_2$} تعداد گره‌های با دو فرزند در درخت دودویی {$T$} باشند آنگاه درستی رابطه‌ی {$n_0=n_2+1$} را نشان دهید.
+
+\پاسخ
+
+اگر {$n$} را برابر با تعداد کل گره‌ها و {$n_1$} را برابر با تعداد گره‌های تک فرزندی در درخت دودویی {$T$} در نظر بگیریم چون تمامی گره‌ها در درخت {$T$} دارای حداکثر دو فرزند هستند در نتیجه رابطه‌ی {\eqref{ch5:eqn:binTreeTotalNodes1}} برقرار خواهد بود.
+\begin{equation}
+n = n_0 + n_1 + n_2\label{ch5:eqn:binTreeTotalNodes1}
+\end{equation}
+در هر درخت تعداد کل گره‌ها همواره یک واحد از تعداد کل یال‌های درخت بیشتر است و این یعنی اگر تعداد کل یال‌ها را با {$e$} نشان دهیم خواهیم داشت:
+\begin{equation}
+n=e+1\label{ch5:eqn:binTreeTotalNodes2}
+\end{equation}
+از طرفی تمامی یال‌های درخت یا از یک گره تک فرزندی و یا از یک گره دو فرزندی منشعب شده‌اند و این یعنی {$e=n_1+2n_2$}. 
+
+اگر در {\eqref{ch5:eqn:binTreeTotalNodes2}} به جای {$e$} معادل آن یعنی {$n_1+2n_2$} را قرار دهیم به رابطه‌ی {\eqref{ch5:eqn:binTreeTotalNodes3}} می‌رسیم.
+\begin{equation}
+n=n_1+2n_2+1\label{ch5:eqn:binTreeTotalNodes3}
+\end{equation}
+
+به کم کردن {\eqref{ch5:eqn:binTreeTotalNodes3}} از {\eqref{ch5:eqn:binTreeTotalNodes1}} و مرتب کردن نتیجه، به رابطه‌ی {$n_0=n_2+1$} می‌رسیم.
+
+
+\سوال تعداد درخت‌های دودویی مختلفی که با صفر گره می‌توان ساخت برابر با یک است (درخت تهی). تعداد درخت‌های دودویی مختلفی که با یک گره می‌توان ساخت نیز برابر با یک است و چنین درختی فقط دارای عنصر ریشه است. درخت‌های دودویی مختلفی که می‌توان با دو گره ساخت در شکل {\eqref{ch5:fig:2nodesBinTrees}} نشان داده شده است. با {$n$} گره چه تعداد درخت دودویی متفاوت می‌توان ساخت؟
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.33]{figs/ch5/binary_trees_with_two_nodes.pdf}
+\caption{درخت‌های دودویی مختلفی که با دو گره می‌توان ساخت}\label{ch5:fig:2nodesBinTrees}
+\end{center}
+\end{figure}
+
+\پاسخ
+
+فرض کنید دارای {$n$} گره هستیم که آنها را از 1 تا {$n$} شماره‌گذاری کرده‌ایم و این گره‌ها را به صورت زیر در کنار هم قرار داده‌ایم:
+$$
+1,2,3,\cdots ,n
+$$
+با در نظر گرفتن این شماره‌گذاری، مجدداً فرض کنید که گره شماره‌ی {$i$} ({$1\leqslant i \leqslant n$}) ریشه‌ی یک درخت دودویی باشد و تمام گره‌های با شماره کمتر از {$i$} در زیردرخت چپ {$i$} و تمام گره‌های با شماره بیشتر از {$i$} در زیردرخت راست {$i$} قرار بگیرند. در این‌صورت زیردرخت چپ ریشه دارای {$i-1$} گره و  زیردرخت راست دارای {$n-i$} گره خواهند بود.
+
+ اگر {$T(n)$} را برابر با تعداد درختهای دودویی مختلفی که با {$n$} گره می‌توان ساخت در نظر بگیریم آنگاه تعداد زیردرخت‌های چپ و راست درخت با ریشه {$i$} به ترتیب برابر با {$T(i-1)$} و {$T(n-i)$} خواهند بود. با توجه به اصل شماره دو شمارش، یعنی اصل ضرب، حاصل عبارت {$T(i-1)\cdot T(n-i)$} برابر با تعداد کل درخت‌های دودویی ممکن با ریشه {$i$} است. {$i$} می‌تواند هر یک از مقادیر 1 تا {$n$} را اختیار کند. در نتیجه به ‌منظور در نظر گرفتن کلیه‌ی حالات گره‌ی ریشه، باید  مقدار عبارت {$T(i-1)\cdot T(n-i)$} را برای همه‌ی مقادیر {$i$} با یکدیگر جمع کنیم. بدین ترتیب به رابطه بازگشتی {\eqref{ch5:eqn:catalanRec}} می‌رسیم.
+ \begin{equation}
+ T(n)=
+ \begin{cases}
+ T(0)=T(1)=1 & i=0,1\\
+ \sum\limits_{i=1}^{n}{T(i-1)\cdot T(n-i)}& i > 1
+ \end{cases}\label{ch5:eqn:catalanRec}
+ \end{equation}
+با حل رابطه‌ی بازگشتی {\eqref{ch5:eqn:catalanRec}} به رابطه‌ی  {\eqref{ch5:eqn:catalanNonRec}} می‌رسیم.
+ \begin{equation}
+T(n)=\frac{\displaystyle\binom{2n}{n}}{n+1}\label{ch5:eqn:catalanNonRec}
+ \end{equation}
+به این ترتیب و با استفاده از رابطه‌ی {\eqref{ch5:eqn:catalanNonRec}} می‌توان تعداد درخت‌های دودویی مختلفی که با {$n$} گره می‌توان ساخت را به دست آورد. برای مثال تعداد درخت‌های دودویی مختلفی که با ۳ گره می‌توان ساخت برابر است با:
+\begin{displaymath}
+T(3)=\frac{\displaystyle\binom{6}{3}}{4}=\frac{20}{4}=5
+\end{displaymath}
+این درخت‌ها در شکل {\eqref{ch5:fig:3nodesBinTrees}} نشان داده شده‌اند. به دنباله‌ی اعداد حاصل از رابطه‌ی {\eqref{ch5:eqn:catalanNonRec}}، دنباله اعداد کاتالان گفته می‌شود.
+
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.33]{figs/ch5/binary_trees_with_three_nodes.pdf}
+\caption{درخت‌های دودویی مختلفی که با سه گره می‌توان ساخت}\label{ch5:fig:3nodesBinTrees}
+\end{center}
+\end{figure}
+
 \سوال فرض کنید برای پیاده‌سازی درخت‌های {$k$}تایی از گره‌هایی با قالب نشان داده شده در شکل {\eqref{ch5:fig:kAryTreeNodeStruct}} استفاده شده است. در چنین ساختاری دارای یک فیلد داده‌ای و {$k$} فیلد اشاره‌گر برای اشاره به هر یک از {$k$} زیردرخت یک گره هستیم. اگر دارای {$n$} گره در چنین درختی باشیم آنگاه تعداد اشاره‌گرهای تهی چه تعداد خواهد بود؟
 
 \begin{figure}[H]
@@ -160,7 +224,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \end{displaymath}
 به این ترتیب تعداد اشاره‌گرهای تهی برابر با {$n(k-1)+1$} است.
 
-\قسمت{درخت‌های عمومی و دودویی}
+\قسمت{الگوریتم‌های درخت‌های عمومی و دودویی}
 
 \سوال با فرض پیاده‌سازی درخت عمومی به کمک اشاره‌گرها و اینکه هر گره موظف است آدرس فرزندان خود را در یک لیست پیوندی نگاه دارد، تابعی بازگشتی بنویسید که بررسی کند آیا عنصری با مقدار {$x$} در درخت داده شده وجود دارد یا خیر. اگر {$x$} موجود بود مقدار {\const{true}} و در غیر اینصورت مقدار {\const{false}} به عنوان خروجی تابع برگردانده شود.
 
@@ -184,18 +248,9 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 				\State	$\id{found} \gets \Call{Find}{p,x}$
 				\State	$p \gets \attrib{p}{\id{next}}$
 		\EndWhile
-		\State	\Return \id{found}	
-		\algstore{findBrk}
-\end{algorithmic}
-\end{latin}
-\end{algorithm}
-
-\begin{algorithm}
-\caption*{بررسی وجود عنصری با مقدار مشخص در یک درخت عمومی - ادامه}
-\begin{latin}
-\begin{algorithmic}[1]
-		\algrestore{findBrk}
+		\State	\Return \id{found}
 \EndFunction
+%		\algstore{findBrk}
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
@@ -227,6 +282,9 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 		\While{$p \neq \const{null}$}
 				\State	$q \gets \Call{FindParent}{p,n}$
 				\If{$q \neq \const{null}$}
+						\State	\Return $q$
+				\EndIf
+				\State	$p \gets \attrib{p}{\id{next}}$
 		\algstore{findParentBrk}
 \end{algorithmic}
 \end{latin}
@@ -237,9 +295,6 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{latin}
 \begin{algorithmic}[1]
 				\algrestore{findParentBrk}
-						\State	\Return $q$
-				\EndIf				
-				\State	$p \gets \attrib{p}{\id{next}}$
 		\EndWhile\label{ch5:alg:ln:findParent2ndLoopEnd}
 		\State	\Return \const{null}
 \EndFunction
@@ -253,7 +308,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \پاسخ
 
-در ابتدا ببینیم از چه نوع درختی باید به چه نوع درختی برسیم. درخت سه تایی نشان داده شده در شکل {\eqref{ch5:fig:3AryTree}} را در نظر بگیرید. اگر از روش لیست عمومی برای نمایش این درخت استفاده کنیم آنگاه به درخت عمومی نشان داده شده در شکل {\eqref{ch5:fig:genTree}} می‌رسیم.
+در ابتدا ببینیم از چه نوع درختی باید به چه نوع درختی برسیم. درخت سه تایی نشان داده شده در شکل {\eqref{ch5:fig:3AryTree}} را در نظر بگیرید. اگر از پیاده‌سازی لیست عمومی برای نمایش این درخت استفاده کنیم آنگاه به درخت عمومی نشان داده شده در شکل {\eqref{ch5:fig:genTree}} می‌رسیم.
 
 \begin{figure}[H]
 \begin{center}
@@ -290,16 +345,18 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 		\If{$\id{gTree} \isequal \const{null}$}
 				\State	\Return \const{null}
 		\EndIf
-		\State	\bcall{New}{$q$}\label{ch4:alg:ln:oneNodeGTreeBegin}
-		\State	$\attrib{q}{data} \gets \attrib{\id{gTree}}{\id{data}}$
-		\State	$m \gets \attrib{\id{gTree}}{\id{children}}$
-		\If{$m \isequal \const{null}$}
-				\State	$\attrib{q}{\id{leftChild}} \gets \const{null}$
-				\State	$\attrib{q}{\id{rightChild}} \gets \const{null}$
-				\State	\Return $q$
+		\State	\bcall{New}{$\id{bTree}$}\label{ch4:alg:ln:oneNodeGTreeBegin}
+		\State	$\attrib{\id{bTree}}{data} \gets \attrib{\id{gTree}}{\id{data}}$
+		\State	$q \gets \attrib{\id{gTree}}{\id{children}}$
+		\If{$q \isequal \const{null}$}
+				\State	$\attrib{\id{bTree}}{\id{leftChild}} \gets \const{null}$
+				\State	$\attrib{\id{bTree}}{\id{rightChild}} \gets \const{null}$
+				\State	\Return \id{bTree}
 		\EndIf\label{ch4:alg:ln:oneNodeGTreeEnd}
-		\State	$\attrib{q}{\id{leftChild}} \gets \Call{Gen2Bin}{m}$\label{ch4:alg:ln:Gen2BinRecCasePt1Begin}
-		\State	$p \gets \attrib{q}{\id{leftChild}}$
+		\State	$\attrib{\id{bTree}}{\id{leftChild}} \gets \Call{Gen2Bin}{q}$\label{ch4:alg:ln:Gen2BinRecCasePt1Begin}
+		\State	$p \gets \attrib{\id{bTree}}{\id{leftChild}}$
+		\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
+		\State	$q \gets \attrib{q}{\id{next}}$\label{ch4:alg:ln:Gen2BinRecCasePt1End}
 		\algstore{gen2binBrk}
 \end{algorithmic}
 \end{latin}
@@ -310,15 +367,13 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{latin}
 \begin{algorithmic}[1]
 		\algrestore{gen2binBrk}
-		\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
-		\State	$m \gets \attrib{m}{\id{next}}$\label{ch4:alg:ln:Gen2BinRecCasePt1End}
-		\While{$m \neq \const{null}$}\label{ch4:alg:ln:Gen2BinRecCasePt2Begin}
-				\State	$\attrib{p}{\id{rightChild}} \gets \Call{Gen2Bin}{m}$
+		\While{$q \neq \const{null}$}\label{ch4:alg:ln:Gen2BinRecCasePt2Begin}
+				\State	$\attrib{p}{\id{rightChild}} \gets \Call{Gen2Bin}{q}$
 				\State	$p \gets \attrib{p}{\id{rightChild}}$
 				\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
-				\State	$m \gets \attrib{m}{\id{next}}$
+				\State	$q \gets \attrib{q}{\id{next}}$
 		\EndWhile\label{ch4:alg:ln:Gen2BinRecCasePt2End}
-		\State	\Return $q$
+		\State	\Return \id{bTree}
 \EndFunction	
 \end{algorithmic}
 \end{latin}
@@ -330,7 +385,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 در صورتی که درخت عمومی دارای بیش از یک گره باشد آنگاه در مرحله اول (خطوط {\ref{ch4:alg:ln:Gen2BinRecCasePt1Begin}} تا {\ref{ch4:alg:ln:Gen2BinRecCasePt1End}}) با استفاده از یک فراخوانی بازگشتی، از روی زیردرختی که سمت چپ‌ترین فرزند گره‌ی ریشه‌ی درخت عمومی است، یک درخت دودویی به دست می‌آید و به عنوان فرزند چپ گره‌ی ریشه در درخت دودویی اصلی قرار می‌گیرد. در مرحله دوم (خطوط {\ref{ch4:alg:ln:Gen2BinRecCasePt2Begin}} تا {\ref{ch4:alg:ln:Gen2BinRecCasePt2End}}) به کمک فراخوانی بازگشتی، به ازای هر یک از فرزندان باقی مانده‌ی گره‌ی ریشه یک درخت دودویی به دست می‌آوریم و طبق روش فرزند چپ - همنیای راست در مکان مناسب از درخت دودویی اصلی درج می‌کنیم.
 
-در انتهای اجرای الگوریتم اشاره‌گر {$q$} که به ریشه‌ی درخت دودویی ایجاد شده از روی درخت عمومی ورودی اشاره دارد به عنوان خروجی الگوریم برگشت داده می‌شود.
+در انتهای اجرای الگوریتم اشاره‌گر {\id{bTree}} که به ریشه‌ی درخت دودویی ایجاد شده از روی درخت عمومی ورودی اشاره دارد به عنوان خروجی الگوریم برگشت داده می‌شود.
 
 شکل‌ {\eqref{ch5:fig:lcrs}} روند ایجاد درخت دودویی پس از مراحل مختلف اجرای الگورریتم {\bcall{Gen2Bin}{}} بر روی درخت شکل  {\eqref{ch5:fig:3AryTree}} را نشان می‌دهد.
 
@@ -362,25 +417,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \begin{figure}
 \begin{center}
-\scalebox{0.75}
-{
-\begin{pspicture}(0,-3.515)(7.3125,3.555)
-\pscircle[linewidth=0.04,dimen=outer](0.5,2.385){0.5}
-\pscircle[linewidth=0.04,dimen=outer](2.1,0.585){0.5}
-\psline[linewidth=0.04cm](0.86,2.065)(1.76,0.925)
-\pscircle[linewidth=0.04,dimen=outer](5.3,-3.015){0.5}
-\psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](4.04,-1.555)(4.96,-2.695)
-\usefont{T1}{ptm}{m}{n}
-\rput(6.9309373,3.375){\rl{سطح}}
-\rput(6.866875,2.475){$1$}
-\rput(6.918594,0.815){$2$}
-\rput(6.887656,-1.105){$3$}
-\rput(6.909531,-3.005){$n$}
-\psline[linewidth=0.04cm,linestyle=dotted,dotsep=0.16cm](6.9,-1.595)(6.9,-2.495)
-\pscircle[linewidth=0.04,dimen=outer](3.7,-1.215){0.5}
-\psline[linewidth=0.04cm](2.44,0.265)(3.36,-0.875)
-\end{pspicture} 
-}
+\includegraphics[scale=0.33]{figs/ch5/movarab_binary_tree.pdf}
 \caption{درخت دودویی مورب به راست}\label{ch5:fig:movarabBinTree}
 \end{center}
 \end{figure}
@@ -390,78 +427,35 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 1+2+2^2+2^3+\cdots +2^n=\frac{2^n-1}{2-1}=2^n-1
 \end{displaymath}
 در نتیجه، به  {$2^n-1$} خانه احتیاج خواهیم داشت که از این تعداد فقط {$n$} خانه مورد استفاده قرار می‌گیرد و {$2^n-1-n$} خانه از آرایه بدون استفاده باقی می‌ماند.
-
-\سوال تعداد درخت‌های دودویی مختلفی که با صفر گره می‌توان ساخت برابر با یک است (درخت تهی). تعداد درخت‌های دودویی مختلفی که با یک گره می‌توان ساخت نیز برابر با یک است و چنین درختی فقط دارای عنصر ریشه است. درخت‌های دودویی مختلفی که می‌توان با دو گره ساخت در شکل {\eqref{ch5:fig:2nodesBinTrees}} نشان داده شده است. با {$n$} گره چه تعداد درخت دودویی متفاوت می‌توان ساخت؟
-
-\begin{figure}[H]
-\begin{center}
-\includegraphics[scale=0.33]{figs/ch5/binary_trees_with_two_nodes.pdf}
-\caption{درخت‌های دودویی مختلفی که با دو گره می‌توان ساخت}\label{ch5:fig:2nodesBinTrees}
-\end{center}
-\end{figure}
-
-\پاسخ
-
-فرض کنید دارای {$n$} گره هستیم که آنها را از 1 تا {$n$} شماره‌گذاری کرده‌ایم و این گره‌ها را به صورت زیر در کنار هم قرار داده‌ایم:
-$$
-1,2,3,\cdots ,n
-$$
-با در نظر گرفتن این شماره‌گذاری، مجدداً فرض کنید که گره شماره‌ی {$i$} ({$1\leqslant i \leqslant n$}) ریشه‌ی یک درخت دودویی باشد و تمام گره‌های با شماره کمتر از {$i$} در زیردرخت چپ {$i$} و تمام گره‌های با شماره بیشتر از {$i$} در زیردرخت راست {$i$} قرار بگیرند. در این‌صورت زیردرخت چپ ریشه دارای {$i-1$} گره و  زیردرخت راست دارای {$n-i$} گره خواهند بود.
-
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.33]{figs/ch5/binary_trees_with_three_nodes.pdf}
-\caption{درخت‌های دودویی مختلفی که با سه گره می‌توان ساخت}\label{ch5:fig:3nodesBinTrees}
-\end{center}
-\end{figure}
-
- اگر {$T(n)$} را برابر با تعداد درختهای دودویی مختلفی که با {$n$} گره می‌توان ساخت در نظر بگیریم آنگاه تعداد زیردرخت‌های چپ و راست درخت با ریشه {$i$} به ترتیب برابر با {$T(i-1)$} و {$T(n-i)$} خواهند بود. با توجه به اصل شماره دو شمارش، یعنی اصل ضرب، حاصل عبارت {$T(i-1)\cdot T(n-i)$} برابر با تعداد کل درخت‌های دودویی ممکن با ریشه {$i$} است. {$i$} می‌تواند هر یک از مقادیر 1 تا {$n$} را اختیار کند. در نتیجه به ‌منظور در نظر گرفتن کلیه‌ی حالات گره‌ی ریشه، باید  مقدار عبارت {$T(i-1)\cdot T(n-i)$} را برای همه‌ی مقادیر {$i$} با یکدیگر جمع کنیم. بدین ترتیب به رابطه بازگشتی {\eqref{ch5:eqn:catalanRec}} می‌رسیم.
- \begin{equation}
- T(n)=
- \begin{cases}
- T(0)=T(1)=1 & i=0,1\\
- \sum\limits_{i=1}^{n}{T(i-1)\cdot T(n-i)}& i > 1
- \end{cases}\label{ch5:eqn:catalanRec}
- \end{equation}
-با حل رابطه‌ی بازگشتی {\eqref{ch5:eqn:catalanRec}} به رابطه‌ی  {\eqref{ch5:eqn:catalanNonRec}} می‌رسیم.
- \begin{equation}
-T(n)=\frac{\displaystyle\binom{2n}{n}}{n+1}\label{ch5:eqn:catalanNonRec}
- \end{equation}
-به این ترتیب و با استفاده از رابطه‌ی {\eqref{ch5:eqn:catalanNonRec}} می‌توان تعداد درخت‌های دودویی مختلفی که با {$n$} گره می‌توان ساخت را به دست آورد. برای مثال تعداد درخت‌های دودویی مختلفی که با ۳ گره می‌توان ساخت برابر است با:
-\begin{displaymath}
-T(3)=\frac{\displaystyle\binom{6}{3}}{4}=\frac{20}{4}=5
-\end{displaymath}
-این درخت‌ها در شکل {\eqref{ch5:fig:3nodesBinTrees}} نشان داده شده‌اند. به دنباله‌ی اعداد حاصل از رابطه‌ی {\eqref{ch5:eqn:catalanNonRec}}، دنباله اعداد کاتالان گفته می‌شود.
-
  
 \سوال درختی دودویی را در نظر بگیرید که به روش فرزند چپ - همنیای راست از یک درخت عمومی به دست آمده است. تابعی بازگشتی بنویسید که چنین درخت دودویی را دریافت کرده و به عنوان خروجی، درخت عمومی معادل با درخت دودویی را بازگرداند. تنها ورودی تابع شما باید اشاره‌گر به ریشه‌ی درخت دودویی باشد.
 
 \پاسخ
 
-شبه کد تابع تبدیل یک درخت دودویی به درخت عمومی معادل‌ در الگوریتم {\eqref{ch5:alg:cnvBin2Gen}} نشان داده شده است. 
+شبه کد تابع ایجاد درخت عمومی از روی درخت دودویی در الگوریتم {\eqref{ch5:alg:bin2Gen}} آورده شده است.
+
 \begin{algorithm}
-\caption{تبدیل درخت دودویی به درخت عمومی معادل}\label{ch5:alg:cnvBin2Gen}
+\caption{ایجاد درخت عمومی از روی درخت دودویی}\label{ch5:alg:bin2Gen}
 \begin{latin}
 \begin{algorithmic}[1]
-\Function{BinToGen}{$\id{binTree}$}
-		\If{$\id{binTree} \isequal \const{null}$}
+\Function{Bin2Gen}{$\id{bTree}$}
+		\If{$\id{bTree} \isequal \const{null}$}
 				\State	\Return \const{null}
 		\EndIf
-		\State	\bcall{New}{$t$}
-		\State	$\attrib{t}{tag} \gets \const{true}$
-		\State	$\attrib{t}{data} \gets \attrib{\id{binTree}}{data}$
-		\State	$\attrib{t}{link} \gets \const{null}$
-		\State	$q \gets t$
-		\State	$p \gets \attrib{\id{binTree}}{\id{leftChild}}$
+		\State	\bcall{New}{$\id{gTree}$}
+		\State	$\attrib{gTree}{data} \gets \attrib{bTree}{data}$
+		\State	$\attrib{gTree}{next} \gets \const{null}$
+		\State	$\attrib{gTree}{children} \gets \const{null}$	
+		\State	$q \gets \id{gTree}$
+		\State	$p \gets \attrib{bTree}{leftChild}$
 		\While{$p \neq \const{null}$}
-				\State	\bcall{New}{$\attrib{q}{\id{link}}$}
-				\State	$q \gets \attrib{q}{link}$
-				\State	$\attrib{q}{tag} \gets \const{false}$
-				\State	$\attrib{q}{dlink} \gets \Call{BinToGen}{p}$
-				\State	$\attrib{q}{link} \gets \const{null}$
+				\State	\bcall{New}{$\attrib{q}{next}$}
+				\State	$q \gets \attrib{q}{next}$
+				\State	$\attrib{q}{children} \gets \Call{Bin2Gen}{p}$
+				\State	$\attrib{q}{next} \gets \const{null}$
 				\State	$p \gets \attrib{p}{rightChild}$
 		\EndWhile
-		\State	\Return $t$
+		\State	\Return \id{gTree}
 \EndFunction
 \end{algorithmic}
 \end{latin}
