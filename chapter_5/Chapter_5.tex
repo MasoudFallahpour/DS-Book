@@ -250,7 +250,6 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 		\EndWhile
 		\State	\Return \id{found}
 \EndFunction
-%		\algstore{findBrk}
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
@@ -345,34 +344,34 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 		\If{$\id{gTree} \isequal \const{null}$}
 				\State	\Return \const{null}
 		\EndIf
-		\State	\bcall{New}{$\id{bTree}$}\label{ch4:alg:ln:oneNodeGTreeBegin}
+		\State	\bcall{New}{$\id{bTree}$}\label{ch5:alg:ln:oneNodeGTreeBegin}
 		\State	$\attrib{\id{bTree}}{data} \gets \attrib{\id{gTree}}{\id{data}}$
 		\State	$q \gets \attrib{\id{gTree}}{\id{children}}$
 		\If{$q \isequal \const{null}$}
 				\State	$\attrib{\id{bTree}}{\id{leftChild}} \gets \const{null}$
 				\State	$\attrib{\id{bTree}}{\id{rightChild}} \gets \const{null}$
 				\State	\Return \id{bTree}
-		\EndIf\label{ch4:alg:ln:oneNodeGTreeEnd}
-		\State	$\attrib{\id{bTree}}{\id{leftChild}} \gets \Call{Gen2Bin}{q}$\label{ch4:alg:ln:Gen2BinRecCasePt1Begin}
+		\EndIf\label{ch5:alg:ln:oneNodeGTreeEnd}
+		\State	$\attrib{\id{bTree}}{\id{leftChild}} \gets \Call{Gen2Bin}{q}$\label{ch5:alg:ln:Gen2BinRecCasePt1Begin}
 		\State	$p \gets \attrib{\id{bTree}}{\id{leftChild}}$
 		\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
-		\State	$q \gets \attrib{q}{\id{next}}$\label{ch4:alg:ln:Gen2BinRecCasePt1End}
+		\State	$q \gets \attrib{q}{\id{next}}$\label{ch5:alg:ln:Gen2BinRecCasePt1End}
 		\algstore{gen2binBrk}
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
 
 \begin{algorithm}
-\caption*{تبدیل درخت عمومی به درخت دودویی با روش فرزند چپ - همنیای راست - ادامه}
+\caption*{ایجاد درخت دودویی از روی درخت عمومی به روش فرزند چپ - همنیای راست - ادامه}
 \begin{latin}
 \begin{algorithmic}[1]
 		\algrestore{gen2binBrk}
-		\While{$q \neq \const{null}$}\label{ch4:alg:ln:Gen2BinRecCasePt2Begin}
+		\While{$q \neq \const{null}$}\label{ch5:alg:ln:Gen2BinRecCasePt2Begin}
 				\State	$\attrib{p}{\id{rightChild}} \gets \Call{Gen2Bin}{q}$
 				\State	$p \gets \attrib{p}{\id{rightChild}}$
 				\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
 				\State	$q \gets \attrib{q}{\id{next}}$
-		\EndWhile\label{ch4:alg:ln:Gen2BinRecCasePt2End}
+		\EndWhile\label{ch5:alg:ln:Gen2BinRecCasePt2End}
 		\State	\Return \id{bTree}
 \EndFunction	
 \end{algorithmic}
@@ -381,9 +380,9 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 در صورتی که درخت عمومی تهی باشد نیاز به انجام کار خاصی نیست و مقدار {\const{null}} به عنوان خروجی الگوریتم برگشت داده می‌شود.
 
-اگر درخت عمومی دارای یک گره باشد آنگاه یک گره برای درخت دودویی ایجاد شده و مقدار داده‌ای تنها گره درخت عمومی در فیلد داده‌ای گره‌ی تازه ایجاد شده قرار می‌گیرد و پس از تنظیم اشاره‌گرهای گره‌ی تازه ایجاد شده الگوریتم {\bcall{Gen2Bin}{}} اشاره‌گر به گره تازه ایجاد شده، که همان ریشه درخت دودویی است، را به عنوان خروجی بازمی‌گرداند (خطوط {\ref{ch4:alg:ln:oneNodeGTreeBegin}} تا {\ref{ch4:alg:ln:oneNodeGTreeEnd}}).
+اگر درخت عمومی دارای یک گره باشد آنگاه یک گره برای درخت دودویی ایجاد شده و مقدار داده‌ای تنها گره درخت عمومی در فیلد داده‌ای گره‌ی تازه ایجاد شده قرار می‌گیرد و پس از تنظیم اشاره‌گرهای گره‌ی تازه ایجاد شده الگوریتم {\bcall{Gen2Bin}{}} اشاره‌گر به گره تازه ایجاد شده، که همان ریشه درخت دودویی است، را به عنوان خروجی باز می‌گرداند (خطوط {\ref{ch5:alg:ln:oneNodeGTreeBegin}} تا {\ref{ch5:alg:ln:oneNodeGTreeEnd}}).
 
-در صورتی که درخت عمومی دارای بیش از یک گره باشد آنگاه در مرحله اول (خطوط {\ref{ch4:alg:ln:Gen2BinRecCasePt1Begin}} تا {\ref{ch4:alg:ln:Gen2BinRecCasePt1End}}) با استفاده از یک فراخوانی بازگشتی، از روی زیردرختی که سمت چپ‌ترین فرزند گره‌ی ریشه‌ی درخت عمومی است، یک درخت دودویی به دست می‌آید و به عنوان فرزند چپ گره‌ی ریشه در درخت دودویی اصلی قرار می‌گیرد. در مرحله دوم (خطوط {\ref{ch4:alg:ln:Gen2BinRecCasePt2Begin}} تا {\ref{ch4:alg:ln:Gen2BinRecCasePt2End}}) به کمک فراخوانی بازگشتی، به ازای هر یک از فرزندان باقی مانده‌ی گره‌ی ریشه یک درخت دودویی به دست می‌آوریم و طبق روش فرزند چپ - همنیای راست در مکان مناسب از درخت دودویی اصلی درج می‌کنیم.
+در صورتی که درخت عمومی دارای بیش از یک گره باشد آنگاه در مرحله اول (خطوط {\ref{ch5:alg:ln:Gen2BinRecCasePt1Begin}} تا {\ref{ch5:alg:ln:Gen2BinRecCasePt1End}}) با استفاده از یک فراخوانی بازگشتی، از روی زیردرختی که سمت چپ‌ترین فرزند گره‌ی ریشه‌ی درخت عمومی است، یک درخت دودویی به دست می‌آید و به عنوان فرزند چپ گره‌ی ریشه در درخت دودویی اصلی قرار می‌گیرد. در مرحله دوم (خطوط {\ref{ch5:alg:ln:Gen2BinRecCasePt2Begin}} تا {\ref{ch5:alg:ln:Gen2BinRecCasePt2End}}) به کمک فراخوانی بازگشتی، به ازای هر یک از فرزندان باقی مانده‌ی گره‌ی ریشه یک درخت دودویی به دست می‌آوریم و طبق روش فرزند چپ - همنیای راست در مکان مناسب از درخت دودویی اصلی درج می‌کنیم.
 
 در انتهای اجرای الگوریتم اشاره‌گر {\id{bTree}} که به ریشه‌ی درخت دودویی ایجاد شده از روی درخت عمومی ورودی اشاره دارد به عنوان خروجی الگوریم برگشت داده می‌شود.
 
@@ -392,10 +391,10 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{figure}
 \begin{center}
 \subfloat[%
-درخت دودویی پس از اجرای خطوط {\ref{ch4:alg:ln:oneNodeGTreeBegin}} تا {\ref{ch4:alg:ln:oneNodeGTreeEnd}}
+درخت دودویی پس از اجرای خطوط {\ref{ch5:alg:ln:oneNodeGTreeBegin}} تا {\ref{ch5:alg:ln:oneNodeGTreeEnd}}
 ]{\includegraphics[scale=0.33]{figs/ch5/lcrs_1.pdf}\label{ch5:fig:lcrs1}}\qquad
 \subfloat[%
-درخت دودویی پس از اجرای خطوط {\ref{ch4:alg:ln:Gen2BinRecCasePt1Begin}} تا {\ref{ch4:alg:ln:Gen2BinRecCasePt1End}}
+درخت دودویی پس از اجرای خطوط {\ref{ch5:alg:ln:Gen2BinRecCasePt1Begin}} تا {\ref{ch5:alg:ln:Gen2BinRecCasePt1End}}
 ]{\includegraphics[scale=0.33]{figs/ch5/lcrs_2.pdf}\label{ch5:fig:lcrs2}}\\[0.2cm]
 \subfloat[%
 درخت دودویی پس از اجرای دور اول حلقه‌
@@ -432,9 +431,9 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \پاسخ
 
-شبه کد تابع ایجاد درخت عمومی از روی درخت دودویی در الگوریتم {\eqref{ch5:alg:bin2Gen}} آورده شده است.
+الگوریتمی که در این سوال به دنبال آن هستیم وارونه‌ی الگوریتمی است که در سوال ۷ به دنبال آن بودیم. در سوال ۷ از روی درخت عمومی باید درخت دودویی به دست می‌آوردیم اما در این سوال باید از روی درخت دودویی به درخت عمومی برسیم. شبه کد تابع ایجاد درخت عمومی از روی درخت دودویی در الگوریتم {\eqref{ch5:alg:bin2Gen}} آورده شده است. در ادامه به بیان روش کار این الگوریتم می‌پردازیم.
 
-\begin{algorithm}
+\begin{algorithm}[H]
 \caption{ایجاد درخت عمومی از روی درخت دودویی}\label{ch5:alg:bin2Gen}
 \begin{latin}
 \begin{algorithmic}[1]
@@ -443,23 +442,45 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 				\State	\Return \const{null}
 		\EndIf
 		\State	\bcall{New}{$\id{gTree}$}
-		\State	$\attrib{gTree}{data} \gets \attrib{bTree}{data}$
+		\State	$\attrib{gTree}{data} \gets \attrib{bTree}{data}$\label{ch5:alg:ln:oneNodeBTreeBegin}
 		\State	$\attrib{gTree}{next} \gets \const{null}$
 		\State	$\attrib{gTree}{children} \gets \const{null}$	
 		\State	$q \gets \id{gTree}$
-		\State	$p \gets \attrib{bTree}{leftChild}$
-		\While{$p \neq \const{null}$}
-				\State	\bcall{New}{$\attrib{q}{next}$}
-				\State	$q \gets \attrib{q}{next}$
-				\State	$\attrib{q}{children} \gets \Call{Bin2Gen}{p}$
+		\State	$p \gets \attrib{bTree}{leftChild}$\label{ch5:alg:ln:oneNodeBTreeEnd}
+		\If{$p \neq \const{null}$}\label{ch5:alg:ln:Bin2GenRecCasePt1Begin}
+				\State	$\attrib{q}{children} \gets \bcall{Bin2Gen}{p}$
+				\State	$q \gets \attrib{q}{children}$
 				\State	$\attrib{q}{next} \gets \const{null}$
 				\State	$p \gets \attrib{p}{rightChild}$
-		\EndWhile
+		\EndIf\label{ch5:alg:ln:Bin2GenRecCasePt1End}
+		\While{$p \neq \const{null}$}\label{ch5:alg:ln:Bin2GenRecCasePt2Begin}
+				\State	$\attrib{q}{next} \gets \bcall{Bin2Gen}{p}$
+		\algstore{bin2genBrk}
+\end{algorithmic}
+\end{latin}
+\end{algorithm}
+
+\begin{algorithm}
+\caption*{ایجاد درخت عمومی از روی درخت دودویی - ادامه}
+\begin{latin}
+\begin{algorithmic}[1]
+		\algrestore{bin2genBrk}
+				\State	$p \gets \attrib{p}{rightChild}$
+				\State	$q \gets \attrib{q}{next}$
+		\EndWhile\label{ch5:alg:ln:Bin2GenRecCasePt2End}
 		\State	\Return \id{gTree}
 \EndFunction
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
+
+در صورتی که درخت دودویی ورودی تهی باشد کار بسیار ساده است و تنها باید مقدار {\const{null}} به عنوان خروجی الگوریتم برگشت داده شود.
+
+اگر درخت دودویی دارای یک گره باشد آنگاه یک گره برای درخت عمومی ایجاد می‌شود و مقدار داده‌ای تنها گره درخت دودویی در فیلد داده‌ای گره‌ی تازه ایجاد شده قرار می‌گیرد. پس از تنظیم اشاره‌گرهای گره‌ی تازه ایجاد شده الگوریتم {\bcall{Bin2Gen}{}} اشاره‌گر به گره تازه ایجاد شده، که همان ریشه درخت عمومی است، را به عنوان خروجی باز می‌گرداند (خطوط {\ref{ch5:alg:ln:oneNodeBTreeBegin}} تا {\ref{ch5:alg:ln:oneNodeBTreeEnd}}).
+
+اگر درخت دودویی ورودی دارای بیش از یک گره باشد آنگاه در مرحله اول (خطوط {\ref{ch5:alg:ln:Bin2GenRecCasePt1Begin}} تا {\ref{ch5:alg:ln:Bin2GenRecCasePt1End}}) با استفاده از یک فراخوانی بازگشتی، از روی زیردرخت چپ ریشه‌ی درخت دودویی، یک درخت عمومی به دست می‌آید و در مکان مناسب از درخت عمومی اصلی درج می‌شود. در مرحله دوم (خطوط {\ref{ch5:alg:ln:Bin2GenRecCasePt2Begin}} تا {\ref{ch5:alg:ln:Bin2GenRecCasePt2End}}) به کمک فراخوانی بازگشتی، با دنبال کردن فرزندان راست زیر دخت چپ ریشه درخت دودویی به ازای هر یک از این گره‌ها، یک درخت عمومی به دست می‌آوریم و در مکان مناسب از درخت عمومی اصلی درج می‌کنیم.
+
+در انتهای اجرای الگوریتم اشاره‌گر {\id{gTree}} که به ریشه‌ی درخت عمومی ایجاد شده از روی درخت دودویی ورودی اشاره دارد به عنوان خروجی الگوریم برگشت داده می‌شود.
 
 \سوال تابعی بازگشتی بنویسید که اشاره‌گر به ریشه‌ی یک درخت دودویی را دریافت کرده و تعداد سطوح آن را بازگرداند.
 
@@ -493,7 +514,8 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{figure}
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/tree_width.pdf}
-\end{center}\caption{درخت دودویی با پهنای چهار}\label{ch5:fig:treeWidth}
+\caption{درخت دودویی با پهنای چهار}\label{ch5:fig:treeWidth}
+\end{center}
 \end{figure}
 
 \پاسخ
@@ -531,12 +553,11 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \end{latin}
 \end{algorithm}
 
-
-\سوال ساده‌ترین الگوریتم برای یافتن دومین بزرگترین مقدار در یک آرایه‌ی {$n$} خانه‌ای نیاز به تقریباً {$2n$} مقایسه دارد. گام‌های کلی الگوریتمی را شرح دهید که دومین بزرگترین مقدار در یک آرایه را با حداکثر {$n+2\lfloor \lg n \rfloor - 2$} مقایسه پیدا می‌کند (راهنمایی: فرض کنید تعداد عناصر آرایه زوج است و از درخت‌ برنده-بازنده\پانویس{{\lr{winner-loser tree}}} استفاده کنید).
+\سوال ساده‌ترین الگوریتم برای یافتن دومین بزرگترین مقدار در یک آرایه‌ی {$n$} خانه‌ای نیاز به تقریباً {$2n$} مقایسه دارد. گام‌های کلی الگوریتمی را شرح دهید که دومین بزرگترین مقدار در یک آرایه را با حداکثر {$n+2\lfloor \lg n \rfloor - 2$} مقایسه پیدا می‌کند (راهنمایی: فرض کنید تعداد عناصر آرایه زوج است و از درخت‌ برنده-بازنده\پانویس{{\lr{Winner-loser tree}}} استفاده کنید).
 
 \پاسخ
 
-این الگوریتم دارای دو مرحله است و در هر مرحله درختی دودویی با نام درخت برنده-بازنده ساخته می‌شود.
+الگوریتم یافتن دومین بزرگترین مقدار در یک آرایه یک بعدی دارای دو مرحله است و در هر مرحله درختی دودویی با نام درخت برنده-بازنده ساخته می‌شود.
 
 در یک درخت برنده-بازنده تمامی عناصر آرایه ورودی به عنوان برگ‌های درخت قرار می‌گیرند. اگر فرض کنیم آرایه ورودی دارای هشت خانه است و حاوی اعداد ۱۹، ۱۳، ۶، ۵، ۳، ۱، ۱۲، ۱۰ است آنگاه درخت برنده-بازنده‌ی ابتدایی در مرحله اول اجرای الگوریتم به صورت شکل {\eqref{ch5:fig:winLose1}} خواهد بود. در هر سطح، عناصری که دارای پدر یکسان هستند با یکدیگر مقایسه شده و مقدار بزرگتر به سطح بالاتر یعنی به گره‌ی پدر آن دو گره‌ای که با یکدیگر مقایسه شده‌اند کپی می‌شود. این روند به همین ترتیب ادامه می‌یابد تا در نهایت گره ریشه بدست آید که همان بزرگترین مقدار آرایه است. درخت نهایی مرحله اول اجرای الگوریتم در شکل {\eqref{ch5:fig:winLose2}} به نمایش در آمده است. 
 
