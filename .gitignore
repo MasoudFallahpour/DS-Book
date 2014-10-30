@@ -3,12 +3,11 @@
 *.bbl
 *.blg
 *.log
-!cover.pdf
 *.synctex
 *.toc
 *.out
 *.loa
 *.lof
 *.lot
-Backup_*
 *.bak
+Backup_*
