@@ -6,25 +6,26 @@
 
 \قسمت{نوع داده‌ی انتزاعی لیست}
 
-\سوال بدون در نظر گرفتن جزئیات مربوط به پیاده‌سازی ساختمان داده‌ی لیست و به کمک توابع اولیه‌ی {\bcall{First}{}}،  {\bcall{Next}{}}، {\bcall{Delete}{}} و {\bcall{Retrieve}{}}، الگوریتمی بازگشتی بنویسید که با دریافت لیستی مانند {$L=\langle a_1,a_2,a_3,\cdots,a_n\rangle$} مقادیر آن را با ترتیب {$a_1,a_n,a_2,a_{n-1},\ldots$} چاپ کند و پس از چاپ مقدار هر عنصر آن عنصر را از لیست حذف کند. عملکرد توابع اولیه به شرح زیر است:
+\سوال بدون در نظر گرفتن جزئیات مربوط به پیاده‌سازی داده‌ساختار لیست و به کمک توابع اولیه‌ی {\bcall{First}{}}،  {\bcall{Next}{}}، {\bcall{Delete}{}} و {\bcall{Retrieve}{}}، الگوریتمی بازگشتی بنویسید که با دریافت لیستی همچون {$L=\langle a_1,a_2,a_3,\cdots,a_n\rangle$} مقادیر آن را با ترتیب {$a_1,a_n,a_2,a_{n-1},\ldots$} چاپ کند و پس از چاپ مقدار هر عنصر آن عنصر را از لیست حذف کند. عملکرد توابع اولیه به شرح زیر است:
 \شروع{فقرات}
 \فقره  {\bcall{First}{$L$}}: اشاره‌گر به عنصر اول از لیست {$L$} را برمی‌گرداند.
 \فقره {\bcall{Next}{$L,p$}}: اشاره‌گر به عنصری از لیست {$L$} که بعد از عنصری است که {$p$} به آن اشاره دارد را برمی‌گرداند.
 \فقره {\bcall{Delete}{$L,p$}}: عنصری که اشاره‌گر {$p$} به آن اشاره دارد را از لیست {$L$} حذف می‌کند.
-\فقره {\bcall{Retrieve}{$L,p$}}: محتوای داده‌ای عنصری از {$L$} که اشاره‌گر {$p$} به آن اشاره می‌کند را برمی‌گرداند.
+\فقره {\bcall{Retrieve}{$L,p$}}: محتوای داده‌ای عنصری از لیست {$L$} که اشاره‌گر {$p$} به آن اشاره دارد را برمی‌گرداند.
 \پایان{فقرات}
 
 \پاسخ
 
-ابتدا یک زیربرنامه‌ی کمکی به نام {\bcall{Last}{}} می‌نویسیم که به کمک آن می‌توان اشاره‌گر به آخرین عنصر لیست پیوندی ورودی را به دست آورد. شبه کد این زیربرنامه در الگوریتم {\eqref{ch3:alg:last}} نشان داده شده است. از زیربرنامه {\bcall{Last}{}} در زیربرنامه‌ی چاپ مقادیر لیست استفاده خواهد شد.
+ابتدا یک تابع کمکی به نام {\bcall{Last}{}} می‌نویسیم که به کمک آن می‌توان اشاره‌گر به آخرین عنصر یک لیست را به دست آورد. شبه کد این  تابع در الگوریتم {\eqref{ch3:alg:last}} نشان داده شده است. از تابع {\bcall{Last}{}} در زیربرنامه‌ی چاپ مقادیر لیست استفاده خواهد شد.
+
 \begin{algorithm}
-\caption{یافتن اشاره‌گر به آخرین عنصر لیست پیوندی}\label{ch3:alg:last}
+\caption{به دست آوردن اشاره‌گر به آخرین عنصر یک لیست}\label{ch3:alg:last}
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{Last}{$L$}
 		\State	$p \gets $ \bcall{First}{$L$}
-		\While{$\Call{Next}{L,p} \neq  \const{null}}$
-				\State	$p \gets \Call{Next}{L,p}$
+		\While{$\bcall{Next}{L,p} \neq  \const{null}}$
+				\State	$p \gets \bcall{Next}{L,p}$
 		\EndWhile
 		\State	\Return $p$
 \EndFunction
@@ -32,27 +33,27 @@
 \end{latin}
 \end{algorithm}
 
-شبه کد زیربرنامه‌ی چاپ مقادیر لیست پیوندی با ترتیب خواسته شده در صورت سوال، در الگوریتم {\eqref{ch3:alg:printList}} آورده شده است. روند کار این زیربرنامه بسیار ساده است. اگر لیست پیوندی ورودی خالی باشد آنگاه زیربرنامه کار خاصی انجام نداده و اجرای آن خاتمه می‌یابد. اگر لیست ورودی دارای تنها یک عنصر باشد آنگاه مقدار این عنصر به دست آمده و چاپ می‌شود. اگر لیست ورودی دارای بیش از یک عنصر باشد در این صورت ابتدا عنصر اول چاپ می‌شود، سپس عنصر آخر و در ادامه عناصر اول و آخر لیست حذف شده و زیربرنامه به صورت بازگشتی خود را فراخوانی می‌کند تا سایر مقادیر لیست نیز چاپ شوند.
+شبه کد زیربرنامه‌ی چاپ مقادیر لیست پیوندی با ترتیب خواسته شده در صورت سوال، در الگوریتم {\eqref{ch3:alg:printList}} آورده شده است. روند کار این زیربرنامه بسیار ساده است. اگر لیست ورودی خالی باشد آنگاه زیربرنامه کار خاصی انجام نداده و اجرای آن خاتمه می‌یابد.  در صورتی که لیست ورودی دارای تنها یک عنصر باشد آنگاه مقدار این عنصر به دست آمده و چاپ می‌شود. اگر لیست ورودی دارای بیش از یک عنصر باشد در این صورت ابتدا عنصر اول چاپ می‌شود، سپس عنصر آخر و در ادامه عناصر اول و آخر لیست حذف شده و زیربرنامه به صورت بازگشتی خود را فراخوانی می‌کند تا سایر مقادیر لیست نیز چاپ شوند.
 
 \begin{algorithm}
-\caption{چاپ مقادیر لیست پیوندی با ترتیبی خاص}\label{ch3:alg:printList}
+\caption{چاپ مقادیر یک لیست با ترتیبی خاص}\label{ch3:alg:printList}
 \begin{latin}
 \begin{algorithmic}[1]
 \Procedure{PrintList}{$L$}
 		\If{$L \isequal \const{null}$}
 				\State	\Return
 		\EndIf
-		\If{$\Call{First}{L} \isequal \Call{Last}{L}$}
-				\State	$f \gets \Call{First}{L}$
-				\State	$x \gets \Call{Retrive}{L,f}$
+		\If{$\bcall{First}{L} \isequal \bcall{Last}{L}$}
+				\State	$f \gets \bcall{First}{L}$
+				\State	$x \gets \bcall{Retrive}{L,f}$
 				\State	\bcall{Write}{$x$}
 		\Else
 				\State	$f \gets \bcall{First}{L}$
 				\State	$l \gets \bcall{Last}{L}$
-				\State	$xf \gets \bcall{Retrieve}{L,f}$
-				\State	$xl \gets \bcall{Retrieve}{L,l}$
-				\State	\bcall{Write}{$xf$}
-				\State	\bcall{Write}{$xl$}
+				\State	$\id{xf} \gets \bcall{Retrieve}{L,f}$
+				\State	$\id{xl} \gets \bcall{Retrieve}{L,l}$
+				\State	\bcall{Write}{\id{xf}}
+				\State	\bcall{Write}{\id{xl}}
 				\State	\bcall{Delete}{$L,f$}
 				\State	\bcall{Delete}{$L,l$}				
 				\State	\bcall{PrintList}{$L$}	
@@ -62,12 +63,13 @@
 \end{latin}
 \end{algorithm}
 
-\سوال الگوریتم {\eqref{ch3:alg:deletex}} قرار است تمام عناصری از یک لیست یکطرفه که دارای مقدار {$x$} هستند را از لیست حذف کند. توضیح دهید چرا این الگوریتم در مواقعی به درستی کار نمی‌کند؟ برای رفع مشکل این الگوریتم چه تغییر یا تغییراتی باید در آن ایجاد کرد؟
+\سوال الگوریتم {\eqref{ch3:alg:deleteValues}} قرار است تمام عناصری از یک لیست که دارای مقدار {$x$} هستند را از لیست حذف کند. توضیح دهید چرا این الگوریتم در مواقعی به درستی کار نمی‌کند. برای رفع مشکل باید چه تغییر یا تغییراتی در الگوریتم ایجاد کرد؟
+
 \begin{algorithm}
-\caption{حذف عناصر با مقدار {$x$} از یک لیست یکطرفه}\label{ch3:alg:deletex}
+\caption{حذف عناصر با مقدار {$x$} از یک لیست}\label{ch3:alg:deleteValues}
 \begin{latin}
 \begin{algorithmic}[1]
-\Procedure{Deletex}{$L,x$}
+\Procedure{DeleteValues}{$L,x$}
 	\State	$p \gets \bcall{First}{L}$
 	\While{$p \neq \bcall{End}{L}$}
 		\If{$\bcall{Retrieve}{p,L} \isequal x$}
@@ -82,7 +84,8 @@
 
 \پاسخ
 
-\سوال لیست یکطرفه‌ی {$L$} دارای طول {$n$} است. با اجرای قطعه زیر بر روی لیست {$L$} هر یک از توابع {\bcall{First}{}}، {\bcall{Next}{}} و {\bcall{End}{}} چند بار اجرا می‌شوند؟
+\سوال لیست {$L$} دارای طول {$n$} است. اگر قطعه کد زیر را بر روی لیست {$L$} اعمال کنیم آنگاه هر یک از توابع {\bcall{First}{}}، {\bcall{Next}{}} و {\bcall{End}{}} چند بار اجرا می‌شوند؟
+
 \begin{latin}
 \begin{algorithmic}[1]
 	\State	$p \gets \bcall{First}{L}$
@@ -102,7 +105,7 @@
 
 \پاسخ
 
-\قسمت{لیست‌های یکطرفه}
+\قسمت{لیست‌های پیوندی یکطرفه}
 
 \سوال زیربرنامه‌ای با نام {\bcall{MakeNull}{}} را در نظر بگیرید که از آن برای حذف تمامی عناصر یک لیست پیوندی یکطرفه استفاده می‌شود. این زیربرنامه را می‌توان به صورت بازگشتی یا غیربازگشتی نوشت. نسخه‌ی غیربازگشتی این زیربرنامه در الگوریتم {\eqref{ch3:alg:mkNull}} و نسخه‌ی بازگشتی در الگوریتم {\eqref{ch3:alg:recMkNull}} نشان داده شده است.
 
@@ -125,7 +128,7 @@
 \caption{حذف تمامی عناصر یک لیست پیوندی یکطرفه به صورت بازگشتی}\label{ch3:alg:recMkNull}
 \begin{latin}
 \begin{algorithmic}[1]
-\Procedure{RecMakeNull}{$L$}
+\Procedure{MakeNull}{$L$}
 		\If{$L \isequal \const{null}$}
 				\State \Return
 		\Else
@@ -144,154 +147,87 @@
 
 در نسخه‌ی غیر بازگشتی عناصر لیست از ابتدای لیست شروع به حذف شدن می‌کنند در حالی که در نسخه بازگشتی عناصر از انتها شروع به حذف شدن می‌کنند. به بیانی دیگر ترتیب حذف عناصر در دو پیاده‌سازی برعکس یکدیگر است.
 
-می‌توان نسخه‌ی بازگشتی را به صورتی بازنویسی کرد که عناصر از ابتدای لیست شروع به حذف شدن کنند. شبه ‌کد تغییر یافته‌ی زیربرنامه {\bcall{MakeNull}{}} در الگوریتم {\eqref{ch3:alg:modRecMkNull}} آمده است.
+می‌توان نسخه‌ی بازگشتی را به صورتی بازنویسی کرد که عناصر از ابتدای لیست شروع به حذف شدن کنند. شبه ‌کد تغییر یافته‌ی نسخه  بازگشتی زیربرنامه {\bcall{MakeNull}{}} در الگوریتم {\eqref{ch3:alg:modRecMkNull}} آمده است.
 
 \begin{algorithm}
 \caption{حذف تمامی عناصر یک لیست پیوندی یک‌طرفه به صورت بازگشتی}\label{ch3:alg:modRecMkNull}
 \begin{latin}
 \begin{algorithmic}[1]
-\Procedure{RecMakeNull}{$L$}
+\Procedure{MakeNull}{$L$}
 		\If{$L \isequal \const{null}$}
 				\State \Return
-		\Else
-				\State	$p \gets L$
-				\State	$L \gets \attrib{L}{next}$
-				\State	\bcall{Free}{$p$}			
-				\State	\bcall{MakeNull}{$L$}
 		\EndIf
+		\State	$p \gets L$
+		\State	$L \gets \attrib{L}{next}$
+		\State	\bcall{Free}{$p$}			
+		\State	\bcall{MakeNull}{$L$}
 \EndProcedure
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
 
-\سوال برای ایجاد یک کپی از یک لیست پیوندی یکطرفه به صورت بازگشتی، می‌توان از الگوریتم {\eqref{ch3:alg:recCopyList}} استفاده کرد. یک زیربرنامه‌ی غیربازگشتی برای کپی کردن یک لیست پیوندی یکطرفه بنویسید. در نسخه‌ی غیربازگشتی ممکن است تفاوت‌هایی در ایجاد سلول‌ها، اتصال آن‌ها به یکدیگر و ... نسبت به نسخه‌ی بازگشتی وجود داشته باشد. این تفاوت‌ها را ذکر کنید.
+\سوال برای ایجاد یک کپی از یک لیست پیوندی یکطرفه به صورت بازگشتی، می‌توان از الگوریتم {\eqref{ch3:alg:recCopyList}} استفاده کرد. یک تابع غیربازگشتی برای کپی کردن یک لیست پیوندی یکطرفه بنویسید. در نسخه‌ی غیربازگشتی ممکن است تفاوت‌هایی در ایجاد سلول‌ها، اتصال آن‌ها به یکدیگر و ... نسبت به نسخه‌ی بازگشتی وجود داشته باشد. این تفاوت‌ها را ذکر کنید.
+
 \begin{algorithm}
 \caption{کپی یک لیست پیوندی یکطرفه به صورت بازگشتی}\label{ch3:alg:recCopyList}
 \begin{latin}
 \begin{algorithmic}[1]
-\Procedure{RecCopyList}{$L$}
+\Function{CopyList}{$L$}
 		\If{$L \isequal \const{null}$}
 				\State \Return \const{null}
-		\Else
-				\State	\bcall{New}{$p$}
-				\State	$\attrib{p}{data} \gets \attrib{L}{data}$
-				\State	$\attrib{p}{next} \gets $ \Call{Copy}{$\attrib{L}{next}$}			
-				\State	\Return $p$
 		\EndIf
-\EndProcedure
+		\State	\bcall{New}{$p$}
+		\State	$\attrib{p}{data} \gets \attrib{L}{data}$
+		\State	$\attrib{p}{next} \gets \bcall{Copy}{\attrib{L}{next}}$
+		\State	\Return $p$
+\EndFunction
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
 
 \پاسخ
 
-شبه کد نسخه‌ی غیربازگشتی زیربرنامه‌ی {\bcall{CopyList}{}} در الگوریتم {\eqref{ch3:alg:copyList}} نشان داده شده است.
+شبه کد نسخه‌ی غیربازگشتی تابع {\bcall{CopyList}{}} در الگوریتم {\eqref{ch3:alg:copyList}} نشان داده شده است.
 \begin{algorithm}
 \caption{کپی یک لیست پیوندی یکطرفه به صورت غیربازگشتی}\label{ch3:alg:copyList}
 \begin{latin}
 \begin{algorithmic}[1]
-\Procedure{CopyList}{$L$}
+\Function{CopyList}{$L$}
 		\If{$L \isequal \const{null}$}
 				\State \Return \const{null}
-		\Else
-				\State	$p \gets L$
-				\State	\bcall{New}{$t$}				
-				\State	$q \gets t$
-				\While{$ p \neq \const{null}$}
-						\State	$\attrib{q}{data} \gets \attrib{p}{data}$
-						\If{$\attrib{p}{next} \neq \const{null}}$
-								\State	\bcall{New}{$\attrib{q}{next}$}												
-								\State	$q \gets \attrib{q}{next}$
-						\EndIf
-						\State	$p \gets \attrib{p}{next}$
-				\EndWhile
-				\State	\Return $t$
 		\EndIf
-\EndProcedure
+		\State	$p \gets L$
+		\State	\bcall{New}{$t$}				
+		\State	$q \gets t$
+		\While{$ p \neq \const{null}$}
+				\State	$\attrib{q}{data} \gets \attrib{p}{data}$
+				\If{$\attrib{p}{next} \neq \const{null}}$
+						\State	\bcall{New}{$\attrib{q}{next}$}												
+						\State	$q \gets \attrib{q}{next}$
+				\EndIf
+				\State	$p \gets \attrib{p}{next}$
+		\EndWhile
+		\State	\Return $t$
+\EndFunction
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
 
-تفاوتی که نسخه‌ی غیربازگشتی زیربرنامه‌ی {\bcall{CopyList}{}} با نسخه‌ی بازگشتی خود دارد این است که ترتیب برقراری ارتباط سلول‌ها در نسخه‌ی بازگشتی از انتها به ابتدای لیست است در حالی‌که در نسخه‌ی غیربازگشتی برقراری ارتباطات از ابتدا به انتها است. به بیان بهتر ترتیب انتساب مقادیر اشاره‌گر {\id{next}} در دو نسخه‌ی بازگشتی و غیربازگشتی تفاوت دارد.
+تفاوتی که نسخه‌ی غیربازگشتی تابع {\bcall{CopyList}{}} با نسخه‌ی بازگشتی خود دارد این است که ترتیب برقراری ارتباط سلول‌ها در نسخه‌ی بازگشتی از انتها به ابتدای لیست است در حالیکه در نسخه‌ی غیربازگشتی برقراری ارتباطات از ابتدا به انتهای لیست است. به بیان بهتر ترتیب انتساب مقادیر اشاره‌گر {\id{next}} در دو نسخه‌ی بازگشتی و غیربازگشتی متفاوت است.
 
-\سوال یک لیست پیوندی یکطرفه‌ که دارای {$n$} عنصر است  را در نظر بگیرید. فرض کنید عناصر این لیست را از ابتدا به انتها و به ترتیب از 1 تا {$n$} شماره‌گذاری کرده‌ایم. زیربرنامه‌ای بنویسید که یک لیست پیوندی یکطرفه را دریافت و عناصر با شماره‌ی زوج را از آن حذف کرده و در لیست جدیدی درج کند. برای مثال اگر لیست ورودی به صورت شکل {\eqref{ch3:fig:L1}} باشد آنگاه پس از اجرای زیربرنامه باید به لیست‌های نشان داده شده در شکل {\eqref{ch3:fig:L1L2}} برسیم. (دقت داشته باشید که حذف عناصر از لیست ورودی و درج آنها در لیست جدید باید تنها با تغییر مقادیر اشاره‌گرهای عناصر انجام شود و نباید هیچ گره‌‌ی جدیدی ایجاد شود).
+\سوال یک لیست پیوندی یکطرفه‌ که دارای {$n$} عنصر است را در نظر بگیرید. فرض کنید عناصر این لیست را از ابتدا به انتها و به ترتیب از ۱ تا {$n$} شماره‌گذاری کرده‌ایم. تابعی به نام {\bcall{SplitList}{}} بنویسید که یک لیست پیوندی یکطرفه را دریافت و عناصر با شماره‌ی زوج را از آن حذف کرده و در لیست جدیدی درج کند. برای مثال اگر لیست ورودی به صورت شکل {\eqref{ch3:fig:splitListInputList}} باشد آنگاه پس از اجرای تابع باید به لیست‌های نشان داده شده در شکل {\eqref{ch3:fig:splitListOutputLists}} برسیم. (دقت داشته باشید که حذف عناصر از لیست ورودی و درج آنها در لیست جدید باید تنها با تغییر اشاره‌گرهای عناصر انجام شود و نباید هیچ گره‌‌ی جدیدی ایجاد شود).
 
 \begin{figure}
 \begin{center}
-% Generated with LaTeXDraw 2.0.8
-% Tue Sep 02 11:44:26 IRDT 2014
-% \usepackage[usenames,dvipsnames]{pstricks}
-% \usepackage{epsfig}
-% \usepackage{pst-grad} % For gradients
-% \usepackage{pst-plot} % For axes
-\scalebox{0.7} % Change this value to rescale the drawing.
-{
-\begin{pspicture}(0,-0.43)(11.814062,0.43)
-\psdots[dotsize=0.14](2.0340624,-0.01)
-\psline[linewidth=0.04cm](11.774062,0.39)(11.434063,-0.37)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.0740626,-0.01)(3.0140624,-0.03)
-\psdots[dotsize=0.14](4.4340625,-0.03)
-\psdots[dotsize=0.14](6.8340626,-0.01)
-\psdots[dotsize=0.14](9.214063,-0.03)
-\psframe[linewidth=0.04,dimen=outer](1.8340625,0.41)(0.6340625,-0.43)
-\psframe[linewidth=0.04,dimen=outer](2.2140625,0.41)(1.7940625,-0.43)
-\psframe[linewidth=0.04,dimen=outer](4.2340627,0.41)(3.0340624,-0.43)
-\psframe[linewidth=0.04,dimen=outer](4.6140623,0.41)(4.1940627,-0.43)
-\psframe[linewidth=0.04,dimen=outer](6.6340623,0.41)(5.4340625,-0.43)
-\psframe[linewidth=0.04,dimen=outer](7.0140624,0.41)(6.5940623,-0.43)
-\psframe[linewidth=0.04,dimen=outer](9.014063,0.41)(7.8140626,-0.43)
-\psframe[linewidth=0.04,dimen=outer](9.394062,0.41)(8.974063,-0.43)
-\psframe[linewidth=0.04,dimen=outer](11.434063,0.43)(10.234062,-0.41)
-\psframe[linewidth=0.04,dimen=outer](11.814062,0.43)(11.394062,-0.41)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.4740624,-0.03)(5.4140625,-0.05)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(6.8540626,-0.01)(7.7940626,-0.03)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(9.254063,-0.03)(10.194062,-0.05)
-\usefont{T1}{ptm}{m}{it}
-\rput(1.2321875,0.005){\large a}
-\rput(3.6715624,0.005){\large b}
-\rput(6.021719,0.005){\large c}
-\rput(8.488906,0.005){\large d}
-\rput(10.821875,0.005){\large e}
-\rput(0.23296875,0.005){\large L1}
-\end{pspicture} 
-}\caption{یک لیست پیوندی نمونه به عنوان ورودی زیربرنامه}\label{ch3:fig:L1}
+\includegraphics[scale=0.33]{figs/ch3/split_list_input_list.pdf}
+\caption{یک لیست پیوندی نمونه به عنوان ورودی تابع {\lr{\textsc{SplitList}}}}\label{ch3:fig:splitListInputList}
 \end{center}
 \end{figure}
 
 \begin{figure}
 \begin{center}
-\scalebox{0.7}
-{
-\begin{pspicture}(0,-1.04)(7.0140624,1.04)
-\psline[linewidth=0.04cm](6.9940624,1.0)(6.6140623,0.22)
-\psframe[linewidth=0.04,dimen=outer](1.8340625,1.04)(0.6340625,0.2)
-\psframe[linewidth=0.04,dimen=outer](2.2140625,1.04)(1.7940625,0.2)
-\psframe[linewidth=0.04,dimen=outer](4.2340627,1.04)(3.0340624,0.2)
-\psframe[linewidth=0.04,dimen=outer](4.6140623,1.04)(4.1940627,0.2)
-\psframe[linewidth=0.04,dimen=outer](6.6340623,1.04)(5.4340625,0.2)
-\psframe[linewidth=0.04,dimen=outer](7.0140624,1.04)(6.5940623,0.2)
-\usefont{T1}{ptm}{m}{it}
-\rput(1.2321875,0.655){\large a}
-\rput(3.6617188,0.635){\large c}
-\rput(6.021875,0.655){\large e}
-\rput(0.23296875,0.595){\large L1}
-\psline[linewidth=0.04cm](4.5940623,-0.22)(4.2140627,-1.0)
-\psdots[dotsize=0.14](2.0340624,-0.62)
-\psframe[linewidth=0.04,dimen=outer](1.8340625,-0.2)(0.6340625,-1.04)
-\psframe[linewidth=0.04,dimen=outer](2.2140625,-0.2)(1.7940625,-1.04)
-\psframe[linewidth=0.04,dimen=outer](4.2340627,-0.18)(3.0340624,-1.02)
-\psframe[linewidth=0.04,dimen=outer](4.6140623,-0.18)(4.1940627,-1.02)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.0740626,-0.62)(2.9940624,-0.62)
-\rput(1.2315625,-0.605){\large b}
-\rput(3.6689062,-0.585){\large d}
-\rput(0.24421875,-0.605){\large L2}
-\psdots[dotsize=0.14](2.0340624,0.6)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.0740626,0.6)(2.9940624,0.6)
-\psdots[dotsize=0.14](4.4340625,0.6)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.4740624,0.6)(5.3940625,0.6)
-\end{pspicture} 
-}
-\caption{لیست‌های حاصل پس از اجرای زیربرنامه}\label{ch3:fig:L1L2}
+\includegraphics[scale=0.33]{figs/ch3/split_list_output_lists.pdf}
+\caption{لیست‌های حاصل از اجرای تابع {\lr{\textsc{SplitList}}}}\label{ch3:fig:splitListOutputLists}
 \end{center}
 \end{figure}
 
@@ -302,23 +238,23 @@
 \caption{جداسازی عناصر با شماره‌ی زوج یک لیست پیوندی یکطرفه}\label{ch3:alg:split}
 \begin{latin}
 \begin{algorithmic}[1]
-\Function{Split}{$\id{L1}$}
-		\If{$\id{L1} \isequal \const{null} \Or \attrib{\id{L1}}{next} \isequal \const{null}$}
-				\State $\id{L2} \gets \const{null}$
+\Function{SplitList}{$L$}
+		\If{$L \isequal \const{null} \Or \attrib{L}{next} \isequal \const{null}$}
+				\State $K \gets \const{null}$
 		\Else
-				\State	$\id{L2} \gets \attrib{\id{L1}}{next}$
-				\State	$\attrib{\id{L1}}{next} \gets \attribb{\id{L1}}{next}{next}$
-				\State	$\attrib{\id{L2}}{next} \gets $\bcall{Split}{$\attrib{\id{L1}}{next}$}
+				\State	$K \gets \attrib{L}{next}$
+				\State	$\attrib{L}{next} \gets \attribb{L}{next}{next}$
+				\State	$\attrib{K}{next} \gets $\bcall{SplitList}{$\attrib{L}{next}$}
 		\EndIf
-		\State	\Return $L2$
+		\State	\Return $K$
 \EndFunction
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
 
-اگر لیست {\lr{L1}} تهی باشد  آنگاه تنها کافیست لیست {\lr{L2}} را نیز برابر با تهی قرار دهیم. همچنین هنگامی که لیست {\lr{L1}} دارای تنها یک عنصر است  باید لیست {\lr{L2}} را برابر با تهی قرار دهیم زیرا در حالتی که فقط یک عنصر وجود دارد لیست {\lr{L1}} باید شامل آن عنصر بوده و لیست {\lr{L2}} تهی باشد. 
+اگر لیست {$L$} تهی باشد آنگاه تنها کافیست لیست {$K$} را نیز برابر با تهی قرار دهیم. همچنین هنگامی که لیست {$L$} دارای تنها یک عنصر است  باید لیست {$K$} را برابر با تهی قرار دهیم زیرا در حالتی که فقط یک عنصر وجود دارد این عنصر دارای شماره یک است لیست {$L$} باید شامل آن عنصر بوده و لیست {$K$} تهی باشد.
 
-اگر لیست {\lr{L1}} دارای بیش از یک عنصر باشد آنگاه ابتدا لیست {\lr{L2}} به عنصر دوم لیست {\lr{L1}} اشاره کرده و سپس عنصر بعد از عنصر اول در لیست {\lr{L1}} به عنصر سوم لیست {\lr{L1}} اشاره می‌کند. به این ترتیب {\lr{L1}} شامل عناصر با شماره‌های {$n ,\ldots , 4,3,1$}  و {\lr{L2}} شامل عنصر با شماره‌ی دو خواهد بود. سپس زیربرنامه‌ی {\bcall{Split}{}} به صورت بازگشتی  فراخوانی می‌شود تا به همین ترتیب عناصر با شماره‌ی فرد در {\lr{L1}} و عناصر با شماره‌ی زوج در {\lr{L2}} قرار بگیرند.
+اگر لیست {$L$} دارای بیش از یک عنصر باشد آنگاه ابتدا لیست {$K$} به عنصر دوم لیست {$L$} اشاره کرده و سپس عنصر بعد از عنصر اول در لیست {$L$} به عنصر سوم لیست {$L$} اشاره می‌کند. به این ترتیب {$L$} شامل عناصر با شماره‌های {$n ,\ldots , 4,3,1$}  و {$K$} شامل عنصر با شماره‌ی دو خواهد بود. سپس زیربرنامه‌ی {\bcall{SplitList}{}} به صورت بازگشتی  فراخوانی می‌شود تا به همین ترتیب عناصر با شماره‌ی فرد در لیست {$L$} و عناصر با شماره‌ی زوج در لیست {$K$} قرار بگیرند.
 
 \سوال دو لیست پیوندی یکطرفه‌ی {\lr{L1}} و {\lr{L2}} را در نظر بگیرید. مقادیر موجود در این دو لیست به صورت صعودی مرتب هستند. زیربرنامه‌ای غیربازگشتی بنویسید که تمام عناصر دو لیست {\lr{L1}} و {\lr{L2}} را در لیست جدید {\lr{L3}} درج کند به نحوی که عناصر لیست {\lr{L3}} نیز به صورت صعودی مرتب باشند. برای مثال اگر دو لیست نشان داده شده در شکل {\eqref{ch3:fig:mrgBefore}} به عنوان ورودی زیربرنامه داده شوند آنگاه پس از پایان اجرای زیربرنامه باید به لیست جدیدی مانند آنچه در شکل {\eqref{ch3:fig:mrgAfter}} نمایش داده شده است برسیم.
 
