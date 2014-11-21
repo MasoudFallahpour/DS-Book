@@ -16,8 +16,11 @@
 {\lr{\href{mailto:masood.fallahpoor@gmail.com}{\texttt{masood.fallahpoor@gmail.com}}}} اطلاع دهید تا خطای موجود در نگارش‌های بعدی کتاب برطرف شوند.
 
 \begin{flushleft}
-\small
-\author\\
-\date
+\author
 \end{flushleft}
+\vskip -1ex%
+{\newlength{\authorwidth}%
+\setlength{\authorwidth}{\widthof{\author}}%
+\hfill\hbox to \authorwidth {\date\hfill}%
+}
 \newpage
