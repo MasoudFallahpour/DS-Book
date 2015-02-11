@@ -237,7 +237,7 @@ $$
 		\State	$\id{start} \gets 1$
 		\State	$\id{end} \gets \attrib{A}{length}$
 		\While{$\id{start} < \id{end}$}
-				\State	$\id{mid} \gets \lfloor(\id{start}+\id{end}) / 2\rfloor$
+				\State	$\id{mid} \gets (\id{start}+\id{end}) \div 2$
 				\If{$A[\id{mid}] < A[\id{mid}+1]$}
 						\State	$\id{start} \gets \id{mid}+1$
 				\EndIf
