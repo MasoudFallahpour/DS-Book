@@ -4,63 +4,68 @@
 \usepackage{amsfonts}
 \usepackage{amssymb}
 
+% Allow 'displaymath' enviroments to be broken across pages
 \allowdisplaybreaks[4]
 
 \usepackage{pifont}
 
-% This package provides extensible arrows
+% Provides extensible arrows
 \usepackage{extarrows}
 
-% Set the math indent to zero centimeter so that there is no 
-% leading space between left margin and display mode equations.
+% Sets the math indent to zero centimeter so that there is no 
+% space between left margin and display mode equations.
 \setlength{\mathindent}{0cm}
 
-% Set the margins
-\usepackage[headheight=17.0pt,top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
+% Sets the margins
+\usepackage[headheight=17.0pt, top=3cm, bottom=3cm, left=3cm, right=3cm]{geometry}
 
-% This packege is used to customize the numbering scheme of "enumerate" environment.
+% This packege is used to customize the numbering scheme of 'enumerate' environment.
 \usepackage{enumerate}
 
-% This package provides facilities to have more control over float environments.
+% Provides facilities to have more control over float environments.
 \usepackage{float}
 
-% By using this package the paragraph indentation is set to zero and
-% some vertical space is added between paragraphs.
+% By using this package the amount of paragraph indentation is set to
+% zero and some extra vertical space is added between paragraphs.
 \usepackage{parskip}
 
-% This package provides facilities for drawing various shapes.
+% This package provides means for drawing various shapes.
 \usepackage{pstricks}
 
-% This package is used to customize the caption of float environments.
+% This package is used to customize the caption of 'float' environments.
 \usepackage[labelformat=parens,labelfont={bf},margin=1cm,font=footnotesize]{caption}
 
 % This package is used to reset footnote counter for each new page.
 \usepackage{zref-perpage} 
 \zmakeperpage{footnote}
 
-% These packages provide facilities for typesetting algorithms.
+% These packages are used for typesetting algorithms.
 \usepackage{algorithm}
 \usepackage{algpseudocode}
 
 % This package provides the ability to change the dependency of counters.
 \usepackage{chngcntr}
 
-% Counter "algorithm" is reset to zero each time counter "chapter" is incremented.
+% Counter 'algorithm' is reset to zero each time counter 'chapter' is incremented.
 \counterwithin{algorithm}{chapter}
 
 % This package is used to increase the spacing between lines of a paragraph
 \usepackage[onehalfspacing]{setspace}
 
+% Provides more control over header and footer
 \usepackage{fancyhdr}
 
 \usepackage[linewidth=0.7pt]{mdframed}
 
+% Allows the insertion of pages of external PDF files into current file.
 \usepackage{pdfpages}
 
 \usepackage{tocbibind}
 
+% Provides the ability to have multiple figures in a single 'figure' environment.
 \usepackage[font=footnotesize]{subfig}
 
+% Allows to have hyper references
 \usepackage{hyperref}
 \hypersetup{
 	colorlinks=true,
@@ -75,48 +80,30 @@
 % Provides publication quality tables
 \usepackage{booktabs}
 
-% Package for typesetting in Persian.
+% This package is required for typesetting in Persian.
 \usepackage{xepersian}
 
-% Set the default font of Persian text.
+% Sets the default font of Persian text.
 \settextfont[Scale=1]{XB Niloofar}
 
-% Reduce the default size of Persian digits in math mode.
+% Sets the font of Persian digits in math mode.
 \setdigitfont[Scale=1]{XB Niloofar}
 
+% Defines a new font
 \defpersianfont\nastaliq[Scale=2]{IranNastaliq}
 
 \makeatletter
-
-% Change the numbering of algorithms.
+% Changes the numbering scheme of algorithms.
 % For example the first algorithm in second chapater is numbered as 1.2
 \renewcommand{\thealgorithm}{\thechapter\@SepMark\arabic{algorithm}}
-
-%\def\abj@num@i#1{%
-%	\ifcase#1
-%		\or الف%
-%		\or ب%
-%		\or ج%
-%		\or د%
-%		\or ه%
-%		\or و%
-%		\or ز%
-%		\or ح%
-%		\or ط%
-%	\fi%
-%	\ifnum#1=\z@\abjad@zero\fi%
-%}
 \makeatother
 
-%*********************************************
-%*                   Definition of macros     		   		    *
-%*********************************************
 % A new counter, with initial value of 0, is defined to automate the numbering of questions.
-% This counter is reset to 0 everytime counter "chapter" is incremented.
+% This counter is reset to 0 everytime counter 'chapter' is incremented.
 \newcounter{qcnt}[chapter]
 
 % A new counter, with initial value of 0, is defined to automate the numbering of answers.
-% This counter is reset to 0 everytime counter "chapter" is incremented.
+% This counter is reset to 0 everytime counter 'chapter' is incremented.
 \newcounter{acnt}[chapter]
 
 % This macro typesets the header of a question.
@@ -124,7 +111,7 @@
 % This macro typesets the header of an answer.
 \فرمان‌نو{\پاسخ}{\گام‌شمارنده{acnt}\بدون‌تورفتگی{\scalebox{0.75}{$\lhd$}}\فضا\متن‌سیاه{پاسخ سوال {\theacnt}.\فضا}}
 
-% macros for typesetting attribute(s) of objects.
+% Macros for typesetting attribute(s) of objects.
 \newcommand{\attribxi}[2]{\ensuremath{#1.\hspace*{1pt}\id{#2}}}
 \newcommand{\attribxx}[2]{\ensuremath{#1.\hspace*{1pt}#2}}
 \newcommand{\attribix}[2]{\ensuremath{\id{#1}\hspace*{1pt}.#2}}
@@ -137,49 +124,43 @@
 \newcommand{\attribbbb}[5]{\attribxi{\attribbb{#1}{#2}{#3}{#4}}{#5}}
 \newcommand{\attribbxxi}[3]{\attribxi{\attribxx{#1}{#2}}{#3}}
 
-% change comment symbol to "//"
+% Changes the comment symbol to '//'
 \algrenewcommand{\algorithmiccomment}[1]{\texttt{\textbf{/\hspace*{-0.2em}/}} #1}
 
+% Removes 'do' and 'then' keywords.
 \algrenewcommand\algorithmicdo{}
 \algrenewcommand\algorithmicthen{}
 
-% defenition of some keywords
+% Definitions of some keywords
 \newcommand{\To}{\ensuremath{\mathbf{\ to\ }}}
 \newcommand{\Downto}{\ensuremath{\mathbf{\ downto\ }}}
 \renewcommand{\And}{\ensuremath{\mathbf{\ and\ }}}
 \newcommand{\Or}{\ensuremath{\mathbf{\ or\ }}}
 
-% To typeset equality operator in conditionals
+% Defines the equality operator to be used in conditionals.
 \DeclareMathOperator{\isequal}{\scalebox{0.8}[1]{=}\hspace*{1pt}\scalebox{0.8}[1]{=}}
 
-% To typeset division operator which may have a real number as result
+% Defines the division operator which may have a real number as result.
 \DeclareMathOperator{\rdiv}{/}
 
-% To typeset subarray ranges.
+\DeclareMathOperator{\oftype}{:}
+
+% Defines the subarray range operator.
 \newcommand{\twodots}{\mathinner{\ldotp\ldotp}}
 
 % To typeset identifiers that are more than one letter
 \newcommand{\id}[1]{\ensuremath{\mathit{#1}}}
 
-\newcommand{\oftype}{\ensuremath{\,:\,}}
-
-\newcommand{\version}[2]{%
-نگارش {#2\scalebox{0.8}{/}{#1}}
-}
-
-\renewcommand{\date}{%
-آبان ۱۳۹۳
-}
-
-\renewcommand{\author}{%
-مسعود فلاح‌پور%
-}
-
-% Override "gets" macro; changing it from left-pointing arrow to =
+% Overrides 'gets' macro; changing it from left-pointing arrow to =
 \renewcommand{\gets}{\mathrel{\hspace{1pt}=\hspace{1pt}}}
 
-\makeatletter
+%\newcommand{\oftype}{\ensuremath{\,:\,}}
 
+% Sets the bullet symbols of 'itemize' environment
+\renewcommand{\labelitemi}{\scalebox{0.6}{\ding{108}}}
+\renewcommand{\labelitemii}{\scalebox{0.6}{\ding{110}}}
+
+\makeatletter
 % To typeset constants like TRUE,FALSE and NULL
 \newcommand{\const}[1]{%
 	\if@RTL%
@@ -196,9 +177,16 @@
 		\Call{#1}{#2}%
 	\fi%
 }
-
 \makeatother
 
-% Set the bullet symbols of itemize environment
-\renewcommand{\labelitemi}{\scalebox{0.6}{\ding{108}}}
-\renewcommand{\labelitemii}{\scalebox{0.6}{\ding{110}}}
+\newcommand{\version}[2]{%
+نگارش {#2\scalebox{0.8}{/}{#1}}
+}
+
+\renewcommand{\date}{%
+آبان ۱۳۹۳
+}
+
+\renewcommand{\author}{%
+مسعود فلاح‌پور%
+}
