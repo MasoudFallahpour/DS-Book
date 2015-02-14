@@ -599,175 +599,26 @@ $\dfrac{n(n+1)(2n+1)}{6}-n^2$ & $\dfrac{n(n-1)}{2}$ & $n-1$ & $n$\\
 
 \پاسخ
 
-\سوال دانشگاهی با ۴۰۰۰ دانشجو و ۲۵۰۰ درس را در نظر بگیرید. این دانشگاه برای سیستم آموزشی خود قصد تولید دو نوع گزارش را دارد:
+\سوال دانشگاهی با ۴۰۰۰ دانشجو و ۲۰۰ درس را در نظر بگیرید. این دانشگاه برای سیستم آموزشی خود قصد تولید دو نوع گزارش را دارد:
 \شروع{شمارش}
-\فقره گزارشی شامل افراد ثبت نام کننده برای هر درس به تفکیک درس.
-\فقره گزارشی شامل دروس اخذ شده توسط هر دانشجو به تفکیک دانشجو.
+\فقره گزارشی شامل دانشجویان ثبت نام کننده در هر درس به تفکیک درس،
+\فقره گزارشی شامل دروس ثبت نام شده توسط هر دانشجو به تفکیک دانشجو.
 \پایان{شمارش}
-یک راه برای نگهداری اطلاعات مربوط به دانشجویان و کلاس‌ها استفاده از یک آرایه دو بعدی است. چنین آرایه‌ای دارای صد میلیون خانه خواهد بود! در این دانشگاه هر دانشجو به طور متوسط در سه درس ثبت نام می‌کند و این یعنی به طور متوسط تنها ۱۲۰ هزار خانه از این آرایه دارای مقادیر مفید هستند (حدود {$0.1$} درصد از کل فضای آرایه). در چنین حالتی فضای بسیار زیادی به هدر می‌رود. به کمک لیست‌های پیوندی داده‌ساختاری طراحی کنید که فقط شامل اطلاعات مفید باشد و همچنین مناسب تولید دو نوع گزارش ذکر شده هم باشد.
+یک راه برای ذخیره اطلاعات مربوط به دانشجویان و درس‌ها استفاده از یک آرایه دو بعدی است. چنین آرایه‌ای دارای ۸۰۰ هزار خانه خواهد بود! در این دانشگاه هر دانشجو به طور متوسط در سه درس ثبت نام می‌کند و این یعنی به طور متوسط تنها دوازده هزار خانه از این آرایه دارای مقادیر مفید هستند که برابر با {$1.5$} درصد از کل فضای آرایه است. در چنین حالتی فضای بسیار زیادی هدر می‌رود. به کمک لیست‌های پیوندی داده‌ساختاری طراحی کنید که فقط شامل اطلاعات مفید باشد و همچنین مناسب تولید دو نوع گزارش ذکر شده نیز باشد.
 
 \پاسخ
 
-شکل {\eqref{ch3:fig:custDS}} نمایش دهنده‌ی داده‌ساختار مورد نظر است. توجه داشته باشید که این داده‌ساختار تنها داده‌ساختار ممکن نیست. همانطور که از شکل مشخص است، چندین لیست پیوندی با یکدیگر ترکیب و در قالب یک لیست پیوندی پیچیده به نمایش درآمده‌اند. تمام لیست‌ها دارای گره‌ی سرلیست هستند و به صورت حلقوی پیاده‌سازی شده‌اند. روش به دست آوردن گزارش‌های ذکر شده در ادامه بیان خواهد شد.
+شکل {\eqref{ch3:fig:customDS}} نمایش دهنده‌ی داده‌ساختار مورد نظر است. توجه داشته باشید که این داده‌ساختار تنها داده‌ساختار ممکن نیست. همانطور که از شکل مشخص است، چندین لیست پیوندی با یکدیگر ترکیب و در قالب یک لیست پیوندی پیچیده به نمایش درآمده‌اند. تمام لیست‌ها دارای گره‌ی سرلیست هستند و به صورت حلقوی پیاده‌سازی شده‌اند. روش به دست آوردن گزارش‌های ذکر شده در صورت سوال در ادامه بیان شده است.
+
 \begin{figure}
 \begin{center}
-\scalebox{0.7} 
-{
-\begin{pspicture}(0,-4.23)(14.64,4.23)
-\psdots[dotsize=0.14](4.42,3.25)
-\psdots[dotsize=0.14](6.82,3.23)
-\psdots[dotsize=0.14](9.22,3.25)
-\psdots[dotsize=0.14](11.6,3.23)
-\psframe[linewidth=0.04,dimen=outer](4.22,3.67)(3.02,2.83)
-\psframe[linewidth=0.04,dimen=outer](4.6,3.67)(4.18,2.83)
-\psframe[linewidth=0.04,dimen=outer](6.62,3.67)(5.42,2.83)
-\psframe[linewidth=0.04,dimen=outer](7.0,3.67)(6.58,2.83)
-\psframe[linewidth=0.04,dimen=outer](9.02,3.67)(7.82,2.83)
-\psframe[linewidth=0.04,dimen=outer](9.4,3.67)(8.98,2.83)
-\psframe[linewidth=0.04,dimen=outer](11.4,3.67)(10.2,2.83)
-\psframe[linewidth=0.04,dimen=outer](11.78,3.67)(11.36,2.83)
-\psframe[linewidth=0.04,dimen=outer](13.82,3.69)(12.62,2.85)
-\psframe[linewidth=0.04,dimen=outer](14.2,3.69)(13.78,2.85)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(6.82,3.23)(6.8,0.53)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(9.22,3.25)(9.24,2.17)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(11.6,3.23)(11.58,2.17)
-\usefont{T1}{ptm}{m}{n}
-\rput(3.6403124,3.265){\large S1}
-\rput(6.0915623,3.265){\large S2}
-\rput(8.468281,3.265){\large S3}
-\rput(10.835468,3.265){\large S4}
-\rput(13.25375,3.265){\large S5}
-\psframe[linewidth=0.04,dimen=outer](1.8,2.05)(0.6,1.21)
-\psframe[linewidth=0.04,dimen=outer](2.18,2.05)(1.76,1.21)
-\psframe[linewidth=0.04,dimen=outer](1.8,0.45)(0.6,-0.39)
-\psframe[linewidth=0.04,dimen=outer](2.18,0.45)(1.76,-0.39)
-\psframe[linewidth=0.04,dimen=outer](1.82,-1.15)(0.62,-1.99)
-\psframe[linewidth=0.04,dimen=outer](2.2,-1.15)(1.78,-1.99)
-\psframe[linewidth=0.04,dimen=outer](1.82,-2.75)(0.62,-3.59)
-\psframe[linewidth=0.04,dimen=outer](2.2,-2.75)(1.78,-3.59)
-\rput(1.2270312,1.625){\large C1}
-\rput(1.2382812,0.025){\large C2}
-\rput(1.235,-1.575){\large C3}
-\rput(1.2621875,-3.155){\large C4}
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.42,3.25)(4.42,2.15)
-\psframe[linewidth=0.04,dimen=outer](9.4,2.05)(7.78,1.21)
-\psline[linewidth=0.04cm](8.58,2.01)(8.58,1.25)
-\psdots[dotsize=0.14](8.2,1.65)
-\psdots[dotsize=0.14](8.98,1.65)
-\psframe[linewidth=0.04,dimen=outer](4.62,2.05)(3.0,1.21)
-\psline[linewidth=0.04cm](3.8,2.01)(3.8,1.25)
-\psdots[dotsize=0.14](3.42,1.65)
-\psdots[dotsize=0.14](4.2,1.65)
-\psframe[linewidth=0.04,dimen=outer](11.82,2.07)(10.2,1.23)
-\psline[linewidth=0.04cm](11.0,2.03)(11.0,1.27)
-\psdots[dotsize=0.14](10.62,1.67)
-\psdots[dotsize=0.14](11.4,1.67)
-\psframe[linewidth=0.04,dimen=outer](7.02,0.45)(5.4,-0.39)
-\psline[linewidth=0.04cm](6.2,0.41)(6.2,-0.35)
-\psdots[dotsize=0.14](5.82,0.05)
-\psdots[dotsize=0.14](6.6,0.05)
-\psframe[linewidth=0.04,dimen=outer](14.22,0.47)(12.6,-0.37)
-\psline[linewidth=0.04cm](13.4,0.43)(13.4,-0.33)
-\psdots[dotsize=0.14](13.02,0.07)
-\psdots[dotsize=0.14](13.8,0.07)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.42,1.63)(3.42,-1.15)
-\psframe[linewidth=0.04,dimen=outer](9.4,-1.15)(7.78,-1.99)
-\psline[linewidth=0.04cm](8.58,-1.19)(8.58,-1.95)
-\psdots[dotsize=0.14](8.2,-1.55)
-\psdots[dotsize=0.14](8.98,-1.55)
-\psframe[linewidth=0.04,dimen=outer](4.62,-1.15)(3.0,-1.99)
-\psline[linewidth=0.04cm](3.8,-1.19)(3.8,-1.95)
-\psdots[dotsize=0.14](3.42,-1.55)
-\psdots[dotsize=0.14](4.2,-1.55)
-\psframe[linewidth=0.04,dimen=outer](11.82,-1.13)(10.2,-1.97)
-\psline[linewidth=0.04cm](11.0,-1.17)(11.0,-1.93)
-\psdots[dotsize=0.14](10.62,-1.53)
-\psdots[dotsize=0.14](11.4,-1.53)
-\psframe[linewidth=0.04,dimen=outer](14.22,-1.17)(12.6,-2.01)
-\psline[linewidth=0.04cm](13.4,-1.21)(13.4,-1.97)
-\psdots[dotsize=0.14](13.02,-1.57)
-\psdots[dotsize=0.14](13.8,-1.57)
-\psframe[linewidth=0.04,dimen=outer](7.0,-2.75)(5.38,-3.59)
-\psline[linewidth=0.04cm](6.18,-2.79)(6.18,-3.55)
-\psdots[dotsize=0.14](5.8,-3.15)
-\psdots[dotsize=0.14](6.58,-3.15)
-\psframe[linewidth=0.04,dimen=outer](11.82,-2.73)(10.2,-3.57)
-\psline[linewidth=0.04cm](11.0,-2.77)(11.0,-3.53)
-\psdots[dotsize=0.14](10.62,-3.13)
-\psdots[dotsize=0.14](11.4,-3.13)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.2,1.65)(8.18,-1.11)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(10.62,1.67)(10.6,-1.09)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(14.0,3.25)(13.98,0.53)
-\psdots[dotsize=0.14](14.0,3.23)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(5.82,0.05)(5.82,-2.71)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(13.02,0.05)(13.0,-1.11)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(10.62,-1.51)(10.62,-2.69)
-\psline[linewidth=0.04cm](3.42,-1.57)(3.4,-4.21)
-\psline[linewidth=0.04cm](3.38,-4.19)(2.62,-4.19)
-\psline[linewidth=0.04cm](2.62,-4.17)(2.62,4.19)
-\psline[linewidth=0.04cm](2.62,4.19)(3.8,4.19)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(3.8,4.19)(3.8,3.75)
-\psline[linewidth=0.04cm](5.78,-3.17)(5.78,-4.17)
-\psline[linewidth=0.04cm](5.02,-4.17)(5.02,4.19)
-\psline[linewidth=0.04cm](5.02,4.19)(6.2,4.19)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(6.2,4.19)(6.2,3.75)
-\psline[linewidth=0.04cm](5.02,-4.15)(5.76,-4.15)
-\psline[linewidth=0.04cm](8.2,-1.55)(8.18,-4.19)
-\psline[linewidth=0.04cm](8.16,-4.17)(7.42,-4.17)
-\psline[linewidth=0.04cm](7.42,-4.15)(7.42,4.21)
-\psline[linewidth=0.04cm](7.42,4.21)(8.6,4.21)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.6,4.21)(8.6,3.77)
-\psline[linewidth=0.04cm](10.62,-3.17)(10.62,-4.17)
-\psline[linewidth=0.04cm](9.84,-4.17)(9.84,4.19)
-\psline[linewidth=0.04cm](9.84,4.19)(11.02,4.19)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(11.02,4.19)(11.02,3.75)
-\psline[linewidth=0.04cm](9.84,-4.15)(10.64,-4.15)
-\psline[linewidth=0.04cm](13.02,-1.57)(13.0,-4.21)
-\psline[linewidth=0.04cm](13.02,-4.19)(12.24,-4.19)
-\psline[linewidth=0.04cm](12.24,-4.17)(12.24,4.19)
-\psline[linewidth=0.04cm](12.24,4.19)(13.42,4.19)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(13.42,4.19)(13.42,3.75)
-\psdots[dotsize=0.14](2.0,1.61)
-\psdots[dotsize=0.14](2.0,-0.01)
-\psdots[dotsize=0.14](2.0,-1.59)
-\psdots[dotsize=0.14](2.0,-3.17)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.0,1.61)(2.98,1.61)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.02,-1.59)(2.98,-1.59)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.96,1.65)(10.16,1.63)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(8.98,-1.55)(10.18,-1.57)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(11.4,-1.53)(12.6,-1.55)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.18,1.65)(7.76,1.65)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(4.2,-1.55)(7.78,-1.55)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(6.6,-3.15)(10.18,-3.15)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(1.96,-0.01)(5.36,-0.01)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(6.58,0.07)(12.58,0.03)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(2.04,-3.17)(5.36,-3.15)
-\psline[linewidth=0.04cm](11.42,1.67)(14.58,1.67)
-\psline[linewidth=0.04cm](14.6,1.67)(14.6,0.83)
-\psline[linewidth=0.04cm](14.6,0.83)(0.0,0.81)
-\psline[linewidth=0.04cm](0.02,0.83)(0.02,1.59)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.02,1.59)(0.5,1.59)
-\psline[linewidth=0.04cm](14.6,0.07)(14.6,-0.77)
-\psline[linewidth=0.04cm](14.6,-0.77)(0.0,-0.79)
-\psline[linewidth=0.04cm](0.02,-0.77)(0.02,-0.01)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.02,-0.01)(0.5,-0.01)
-\psline[linewidth=0.04cm](13.8,0.07)(14.6,0.05)
-\psline[linewidth=0.04cm](14.62,-1.57)(14.62,-2.41)
-\psline[linewidth=0.04cm](14.62,-2.41)(0.02,-2.43)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.04,-1.65)(0.52,-1.65)
-\psline[linewidth=0.04cm](13.82,-1.57)(14.62,-1.59)
-\psline[linewidth=0.04cm](0.02,-2.41)(0.02,-1.65)
-\psline[linewidth=0.04cm](11.42,-3.13)(14.58,-3.13)
-\psline[linewidth=0.04cm](14.6,-3.13)(14.6,-3.97)
-\psline[linewidth=0.04cm](14.6,-3.97)(0.0,-3.99)
-\psline[linewidth=0.04cm](0.02,-3.97)(0.02,-3.21)
-\psline[linewidth=0.04cm,arrowsize=0.05291667cm 2.0,arrowlength=1.4,arrowinset=0.4]{->}(0.02,-3.21)(0.5,-3.21)
-\end{pspicture} 
-}
-\caption{}\label{ch3:fig:custDS}
+\includegraphics[scale=0.33]{figs/ch3/custom_ds.pdf}
+\caption{%
+یک داده‌ساختار مناسب برای گزارش‌گیری در مورد ۱) دانشجویان ثبت نام کننده در هر درس به تفکیک درس و ۲) دروس ثبت نام شده توسط هر دانشجو به تفکیک دانشجو.
+}\label{ch3:fig:customDS}
 \end{center}
 \end{figure}
 
-برای استخراج اسامی افراد ثبت‌نام کننده در یک کلاس، مثلاً کلاس {\lr{C3}} ، کافیست از گره با سرلیست {\lr{C3}} شروع کرده و به سمت راست این لیست حرکت کنیم. بعد از رفتن به اولین گره از لیست {\lr{C3}} ، مقدار جاری اشاره‌گر را ذخیره می‌کنیم و سپس با استفاده از اشاره‌گر به سمتِ پایین این گره به صورت عمودی در لیست حرکت کرده تا به سرلیست لیست عمودی برسیم (در اینجا لیست {\lr{S1}}). به این ترتیب نام اولین دانشجو ثبت نام کننده در کلاس {\lr{C3}} به دست می‌‌آید. در گام بعد و برای به دست آوردن نام دانشجوی بعدی از اشاره‌گر ذخیره شده در گام قبل استفاده کرده و دوباره به سمت راست در لیست {\lr{C3}} حرکت کرده و روند حرکت عمودی در ساختمان داده را ادامه می‌دهیم. به این ترتیب می‌توان اسامی تمام افراد ثبت نام کننده در یک کلاس را به دست آورد.
+برای استخراج اسامی افراد ثبت‌نام کننده در یک درس، مثلاً درس {\lr{C3}} ، کافیست از گره با سرلیست {\lr{C3}} شروع کرده و به سمت راست این لیست حرکت کنیم. بعد از رفتن به اولین گره از لیست {\lr{C3}} ، مقدار جاری اشاره‌گر را ذخیره می‌کنیم و سپس با استفاده از اشاره‌گر به سمتِ پایین این گره، به صورت عمودی در لیست حرکت کرده تا به سرلیست لیست عمودی برسیم (در اینجا لیست {\lr{S1}}). به این ترتیب نام اولین دانشجو ثبت نام کننده در درس {\lr{C3}} به دست می‌‌آید. در گام بعد و برای به دست آوردن نام دانشجوی بعدی از اشاره‌گر ذخیره شده در گام قبل استفاده کرده و دوباره به سمت راست در لیست {\lr{C3}} حرکت کرده و روند حرکت عمودی در داده‌ساختار را ادامه می‌دهیم. به این ترتیب می‌توان اسامی تمام افراد ثبت نام کننده در یک درس را به دست آورد.
 
 برای به دست آوردن دروس ثبت نام شده توسط یک دانشجو به روشی مشابه با پاراگراف قبل عمل می‌کنیم با این تفاوت که در اینجا از گره با سر لیست حاوی نام دانشجو شروع کرده و به سمت پایین لیست حرکت می‌کنیم و برای یافتن هر درس به صورت افقی لیست‌ها را پیمایش می‌کنیم.
