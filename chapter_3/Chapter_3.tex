@@ -677,7 +677,7 @@ $\dfrac{n(n+1)(2n+1)}{6}-n^2$ & $\dfrac{n(n-1)}{2}$ & $n-1$ & $n$\\
 
 در حالت دوم اشاره‌گر {$p$} به عنصر ابتدایی لیست {\lr{L1}} اشاره دارد. در این حالت نیازی به پیمایش لیست {\lr{L1}} وجود ندارد. تنها کافیست با توجه به اینکه اشاره‌گر {$q$} به ابتدای لیست {\lr{L2}} اشاره دارد یا خیر عملیات لازم برای حذف عنصر ابتدایی لیست {\lr{L1}} و درج آن در لیست {\lr{L2}} انجام شود (خطوط {\ref{ch3:alg:line:mvOutElseBegin}} تا {\ref{ch3:alg:line:mvOutElseEnd}}).
 
-\سوال با فرض در اختیار داشتن زیربرنامه‌های {\bcall{Dispose}{}} و {\bcall{Allocate}{}}، زیربرنامه‌های زیر را برای یک لیست اندیسی یکطرفه پیاده‌سازی کنید:
+\سوال با فرض در اختیار داشتن زیربرنامه‌های {\bcall{Dispose}{}} و {\bcall{Allocate}{}}، زیربرنامه‌های زیر را برای یک لیست اندیسی یکطرفه پیاده‌سازی کنید.
 \شروع{فقرات}
 \فقره {\bcall{Insert}{$L,p,d$}}: عنصری با مقدار {$d$} ساخته و آن را در لیست {$L$}، بعد از عنصری که {$p$} به آن اشاره دارد، درج می‌کند.
 \فقره {\bcall{Delete}{$L,p$}}: عنصری که {$p$} به آن اشاره دارد را از لیست {$L$} حذف می‌کند.
@@ -686,6 +686,81 @@ $\dfrac{n(n+1)(2n+1)}{6}-n^2$ & $\dfrac{n(n-1)}{2}$ & $n-1$ & $n$\\
 \پایان{فقرات}
 
 \پاسخ
+
+شبه کد زیربرنامه‌های درج عنصر جدید، حذف عنصر، یافتن عنصر بعدی و یافتن عنصر قبلی به ترتیب در الگوریتم‌های {\eqref{ch3:alg:insIdxLst}} تا {\eqref{ch3:alg:prevIdxLst}} آورده شده است. در این الگوریتم‌ها فرض شده است آرایه‌ای که از آن برای نگهداری عناصر لیست اندیسی استفاده شده است {\id{space}} نام دارد.
+
+زیربرنامه‌های درج عنصر جدید، حذف عنصر، یافتن عنصر بعدی و یافتن عنصر قبلی در یک لیست اندیسی مانند معادل آنها در یک لیست پیوندی یکطرفه است با این تفاوت که برای مقداردهی فیلده داده‌ای یک گره به جای {$\attrib{p}{data}\gets d$} از عبارت {$\attrib{space[p]}{data} \gets d$} و برای رفتن به گره بعدی به جای {$p\gets \attrib{p}{next}$} از عبارت {$p \gets \attrib{space[p]}{next}$} استفاده می‌شود.
+
+
+\begin{algorithm}
+\caption{درج عنصری جدید در یک لیست اندیسی یکطرفه}\label{ch3:alg:insIdxLst}
+\begin{latin}
+\begin{algorithmic}[1]
+\Procedure{Insert}{$L,p,d$}
+    \State    $\bcall{Allocate}{n}$
+    \State $\attrib{space[n]}{data} \gets d$
+    \If{$p \neq\ $\const{null}}
+        \State    $\attrib{space[n]}{next} \gets \attrib{space[p]}{next}$
+        \State    $\attrib{space[p]}{next} \gets n$
+    \Else
+        \State $\attrib{space[n]}{next} \gets L$
+        \State $L \gets n$
+    \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{latin}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{حذف یک عنصر از یک لیست اندیسی یکطرفه}\label{ch3:alg:delIdxLst}
+\begin{latin}
+\begin{algorithmic}[1]
+\Procedure{Delete}{$L,p$}
+    \State    $q \gets L$
+    \If{$p \neq L$}
+        \While{$\attrib{space[q]}{next} \neq p$}
+            \State    $q \gets \attrib{space[q]}{next}$
+        \EndWhile
+        \State    $\attrib{space[q]}{next} \gets \attrib{space[p]}{next}$
+        \State    \bcall{Dispose}{$p$}
+    \Else
+        \State    $L \gets \attrib{space[L]}{next}$
+        \State    \bcall{Dispose}{$p$}
+    \EndIf
+\EndProcedure
+\end{algorithmic}
+\end{latin}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{یافتن عنصر بعدی در یک لیست اندیسی یکطرفه}\label{ch3:alg:nxtIdxLst}
+\begin{latin}
+\begin{algorithmic}[1]
+\Function{Next}{$L,p$}
+    \State    \Return    $\attrib{space[p]}{next}$
+\EndFunction
+\end{algorithmic}
+\end{latin}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{یافتن عنصر قبلی در یک لیست اندیسی یکطرفه}\label{ch3:alg:prevIdxLst}
+\begin{latin}
+\begin{algorithmic}[1]
+\Function{prev}{$L,p$}
+    \If{$p \neq L$}
+        \State    $q \gets L$
+        \While{$\attrib{space[q]}{next} \neq p$}
+            \State    $q \gets \attrib{space[q]}{next}$
+        \EndWhile
+        \State    \Return    $q$
+    \Else
+        \State    \Return    \const{null}
+    \EndIf
+\EndFunction
+\end{algorithmic}
+\end{latin}
+\end{algorithm}
 
 \سوال لیست اندیسی دوطرفه {$L$} که دارای {$n$} عنصر است را در نظر بگیرید. زیربرنامه‌ای از مرتبه {$O(n)$} بنویسید که لیست {$L$} را به عنوان ورودی دریافت کند و تمام عناصر {$L$} را در خانه‌های ۱ تا {$n$} آرایه، پشت سر هم قرار دهد.
 
