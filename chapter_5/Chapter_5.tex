@@ -80,6 +80,7 @@
 \psline[linewidth=0.04cm,linestyle=dashed,dash=0.16cm 0.16cm](7.0,-1.355)(7.44,-2.075)
 \end{pspicture} 
 }\caption{بخشی از یک درخت {$k$}تایی پر}\label{ch5:fig:kAryFullTree}
+
 \end{center}
 \end{figure}
 
@@ -132,7 +133,7 @@ n=e+1\label{ch5:eqn:binTreeTotalNodes2}
 n=n_1+2n_2+1\label{ch5:eqn:binTreeTotalNodes3}
 \end{equation}
 
-به کم کردن {\eqref{ch5:eqn:binTreeTotalNodes3}} از {\eqref{ch5:eqn:binTreeTotalNodes1}} و مرتب کردن نتیجه، به رابطه‌ی {$n_0=n_2+1$} می‌رسیم.
+با کم کردن {\eqref{ch5:eqn:binTreeTotalNodes3}} از {\eqref{ch5:eqn:binTreeTotalNodes1}} و مرتب کردن نتیجه، به رابطه‌ی {$n_0=n_2+1$} می‌رسیم.
 
 
 \سوال تعداد درخت‌های دودویی مختلفی که با صفر گره می‌توان ساخت برابر با یک است (درخت تهی). تعداد درخت‌های دودویی مختلفی که با یک گره می‌توان ساخت نیز برابر با یک است و چنین درختی فقط دارای عنصر ریشه است. درخت‌های دودویی مختلفی که می‌توان با دو گره ساخت در شکل {\eqref{ch5:fig:2nodesBinTrees}} نشان داده شده است. با {$n$} گره چه تعداد درخت دودویی متفاوت می‌توان ساخت؟
@@ -141,6 +142,7 @@ n=n_1+2n_2+1\label{ch5:eqn:binTreeTotalNodes3}
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/binary_trees_with_two_nodes.pdf}
 \caption{درخت‌های دودویی مختلفی که با دو گره می‌توان ساخت}\label{ch5:fig:2nodesBinTrees}
+
 \end{center}
 \end{figure}
 
@@ -149,6 +151,7 @@ n=n_1+2n_2+1\label{ch5:eqn:binTreeTotalNodes3}
 فرض کنید دارای {$n$} گره هستیم که آنها را از 1 تا {$n$} شماره‌گذاری کرده‌ایم و این گره‌ها را به صورت زیر در کنار هم قرار داده‌ایم:
 $$
 1,2,3,\cdots ,n
+
 $$
 با در نظر گرفتن این شماره‌گذاری، مجدداً فرض کنید که گره شماره‌ی {$i$} ({$1\leqslant i \leqslant n$}) ریشه‌ی یک درخت دودویی باشد و تمام گره‌های با شماره کمتر از {$i$} در زیردرخت چپ {$i$} و تمام گره‌های با شماره بیشتر از {$i$} در زیردرخت راست {$i$} قرار بگیرند. در این‌صورت زیردرخت چپ ریشه دارای {$i-1$} گره و  زیردرخت راست دارای {$n-i$} گره خواهند بود.
 
@@ -174,6 +177,7 @@ T(3)=\frac{\displaystyle\binom{6}{3}}{4}=\frac{20}{4}=5
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/binary_trees_with_three_nodes.pdf}
 \caption{درخت‌های دودویی مختلفی که با سه گره می‌توان ساخت}\label{ch5:fig:3nodesBinTrees}
+
 \end{center}
 \end{figure}
 
@@ -233,21 +237,26 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 شبه کد تابعی بازگشتی که در درخت {\id{gTree}} به دنبال عنصری با مقدار {$x$} می‌گردد در الگوریتم {\eqref{ch5:alg:genTreeFind}} آمده است. در ادامه به بررسی روش عملکرد این تابع پرداخته می‌شود.
 \begin{algorithm}[H]
 \caption{بررسی وجود عنصری با مقدار مشخص در یک درخت عمومی}\label{ch5:alg:genTreeFind}
+
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{Find}{$\id{gTree},x$}
 		\If{$\id{gTree} \isequal \const{null}$}
 				\State	\Return
+
 		\EndIf
+
 		\If{$\attrib{\id{gTree}}{\id{data}} \isequal x$}
 				\State	\Return \const{true}
 		\EndIf
+
 		\State	$\id{found} \gets \const{false}$
 		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$
 		\While{$p \neq \const{null} \And \id{found} \isequal \const{false}$}
 				\State	$\id{found} \gets \Call{Find}{p,x}$
 				\State	$p \gets \attrib{p}{\id{next}}$
 		\EndWhile
+
 		\State	\Return \id{found}
 \EndFunction
 \end{algorithmic}
@@ -264,27 +273,33 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \begin{algorithm}[H]
 \caption{یافتن پدر یک گره‌ی خاص در یک درخت عمومی}\label{ch5:alg:genTreeFindParent}
+
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{FindParent}{$\id{gTree},n$}
 		\If{$\id{gTree} \isequal \const{null}$}
 				\State	\Return \const{null}
 		\EndIf
+
 		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$\label{ch5:alg:ln:findParent1stLoopBegin}
 		\While{$p \neq \const{null}$}
 				\If{$p \isequal n$}
 						\State	\Return $t$
 				\EndIf
+
 				\State	$p \gets \attrib{p}{\id{next}}$
 		\EndWhile\label{ch5:alg:ln:findParent1stLoopEnd}
+
 		\State	$p \gets \attrib{\id{gTree}}{\id{children}}$\label{ch5:alg:ln:findParent2ndLoopBegin}		
 		\While{$p \neq \const{null}$}
 				\State	$q \gets \Call{FindParent}{p,n}$
 				\If{$q \neq \const{null}$}
 						\State	\Return $q$
 				\EndIf
+
 				\State	$p \gets \attrib{p}{\id{next}}$
 		\algstore{findParentBrk}
+
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
@@ -294,7 +309,9 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{latin}
 \begin{algorithmic}[1]
 				\algrestore{findParentBrk}
+
 		\EndWhile\label{ch5:alg:ln:findParent2ndLoopEnd}
+
 		\State	\Return \const{null}
 \EndFunction
 \end{algorithmic}
@@ -313,6 +330,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/three_ary_tree.pdf}
 \caption{یک درخت سه تایی}\label{ch5:fig:3AryTree}
+
 \end{center}
 \end{figure}
 
@@ -320,6 +338,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/general_tree.pdf}
 \caption{نمایش درخت شکل {\eqref{ch5:fig:3AryTree}} با استفاده از لیست عمومی}\label{ch5:fig:genTree}
+
 \end{center}
 \end{figure}
 
@@ -338,13 +357,16 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \begin{algorithm}[H]
 \caption{ایجاد درخت دودویی ار روی درخت عمومی به روش فرزند چپ - همنیای راست}\label{ch5:alg:gen2Bin}
+
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{Gen2Bin}{$\id{gTree}$}
 		\If{$\id{gTree} \isequal \const{null}$}
 				\State	\Return \const{null}
 		\EndIf
+
 		\State	\bcall{New}{$\id{bTree}$}\label{ch5:alg:ln:oneNodeGTreeBegin}
+
 		\State	$\attrib{\id{bTree}}{data} \gets \attrib{\id{gTree}}{\id{data}}$
 		\State	$q \gets \attrib{\id{gTree}}{\id{children}}$
 		\If{$q \isequal \const{null}$}
@@ -352,11 +374,13 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 				\State	$\attrib{\id{bTree}}{\id{rightChild}} \gets \const{null}$
 				\State	\Return \id{bTree}
 		\EndIf\label{ch5:alg:ln:oneNodeGTreeEnd}
+
 		\State	$\attrib{\id{bTree}}{\id{leftChild}} \gets \Call{Gen2Bin}{q}$\label{ch5:alg:ln:Gen2BinRecCasePt1Begin}
 		\State	$p \gets \attrib{\id{bTree}}{\id{leftChild}}$
 		\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
 		\State	$q \gets \attrib{q}{\id{next}}$\label{ch5:alg:ln:Gen2BinRecCasePt1End}
 		\algstore{gen2binBrk}
+
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
@@ -366,12 +390,14 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{latin}
 \begin{algorithmic}[1]
 		\algrestore{gen2binBrk}
+
 		\While{$q \neq \const{null}$}\label{ch5:alg:ln:Gen2BinRecCasePt2Begin}
 				\State	$\attrib{p}{\id{rightChild}} \gets \Call{Gen2Bin}{q}$
 				\State	$p \gets \attrib{p}{\id{rightChild}}$
 				\State	$\attrib{p}{\id{rightChild}} \gets \const{null}$
 				\State	$q \gets \attrib{q}{\id{next}}$
 		\EndWhile\label{ch5:alg:ln:Gen2BinRecCasePt2End}
+
 		\State	\Return \id{bTree}
 \EndFunction	
 \end{algorithmic}
@@ -418,12 +444,14 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/movarab_binary_tree.pdf}
 \caption{درخت دودویی مورب به راست}\label{ch5:fig:movarabBinTree}
+
 \end{center}
 \end{figure}
 
 در چنین درختی، که دارای {$n$} سطح است، دارای تنها {$n$} گره هستیم اما تعداد خانه‌های لازم برای ذخیره‌سازی چنین درختی برابر با تعداد خانه‌های لازم برای یک درخت دودویی پر با {$n$} سطح است. تعداد خانه‌های لازم برای ذخیره‌سازی یک درخت دودویی پر با {$n$} سطح برابر است با:
 \begin{displaymath}
 1+2+2^2+2^3+\cdots +2^n=\frac{2^n-1}{2-1}=2^n-1
+
 \end{displaymath}
 در نتیجه، به  {$2^n-1$} خانه احتیاج خواهیم داشت که از این تعداد فقط {$n$} خانه مورد استفاده قرار می‌گیرد و {$2^n-1-n$} خانه از آرایه بدون استفاده باقی می‌ماند.
  
@@ -435,13 +463,16 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \begin{algorithm}[H]
 \caption{ایجاد درخت عمومی از روی درخت دودویی}\label{ch5:alg:bin2Gen}
+
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{Bin2Gen}{$\id{bTree}$}
 		\If{$\id{bTree} \isequal \const{null}$}
 				\State	\Return \const{null}
 		\EndIf
+
 		\State	\bcall{New}{$\id{gTree}$}
+
 		\State	$\attrib{gTree}{data} \gets \attrib{bTree}{data}$\label{ch5:alg:ln:oneNodeBTreeBegin}
 		\State	$\attrib{gTree}{next} \gets \const{null}$
 		\State	$\attrib{gTree}{children} \gets \const{null}$	
@@ -453,9 +484,11 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 				\State	$\attrib{q}{next} \gets \const{null}$
 				\State	$p \gets \attrib{p}{rightChild}$
 		\EndIf\label{ch5:alg:ln:Bin2GenRecCasePt1End}
+
 		\While{$p \neq \const{null}$}\label{ch5:alg:ln:Bin2GenRecCasePt2Begin}
 				\State	$\attrib{q}{next} \gets \bcall{Bin2Gen}{p}$
 		\algstore{bin2genBrk}
+
 \end{algorithmic}
 \end{latin}
 \end{algorithm}
@@ -465,9 +498,11 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{latin}
 \begin{algorithmic}[1]
 		\algrestore{bin2genBrk}
+
 				\State	$p \gets \attrib{p}{rightChild}$
 				\State	$q \gets \attrib{q}{next}$
 		\EndWhile\label{ch5:alg:ln:Bin2GenRecCasePt2End}
+
 		\State	\Return \id{gTree}
 \EndFunction
 \end{algorithmic}
@@ -490,20 +525,25 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \begin{algorithm}
 \caption{به دست آوردن تعداد سطوح یک درخت دودویی}\label{ch5:alg:treeLevel}
+
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{TreeLevel}{$t$}
 		\If{$t \isequal \const{null}$}
 			\State	\Return 0
 		\EndIf
+
 		\State	$\id{leftLevel} \gets \bcall{TreeLevel}{\attrib{t}{\id{leftChild}}}$
 		\State	$\id{rightLevel} \gets \bcall{TreeLevel}{\attrib{t}{\id{rightChild}}}$			
 		\If{$\id{leftLevel} > \id{rightLevel}$}
 			\State	$\id{level}\gets\id{leftLevel} + 1$
 		\Else
+
 			\State	$\id{level}\gets\id{rightLevel} + 1$
 		\EndIf
+
 		\State	\Return	\id{level}
+
 \EndFunction
 \end{algorithmic}
 \end{latin}
@@ -515,6 +555,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{center}
 \includegraphics[scale=0.33]{figs/ch5/tree_width.pdf}
 \caption{درخت دودویی با پهنای چهار}\label{ch5:fig:treeWidth}
+
 \end{center}
 \end{figure}
 
@@ -526,28 +567,35 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 
 \begin{algorithm}
 \caption{به دست آوردن پهنای یک درخت دودویی}\label{ch5:alg:treeWidth}
+
 \begin{latin}
 \begin{algorithmic}[1]
 \Function{TreeWidth}{$T,\id{currentLevel}$}
 		\If{$\attrib{T}{leftChild} \isequal \const{null} \And \attrib{T}{rightChild} \isequal \const{null}$}
 			\State	\Return $(1,\id{currentLevel})$
 		\EndIf
+
 		\State	$\id{leftWidth},\id{leftLevel} \gets \bcall{TreeWidth}{\attrib{T}{leftChild},\id{currentLevel}+1}$
 		\State	$\id{rightWidth},\id{rightLevel} \gets \bcall{TreeWidth}{\attrib{T}{rightChild},\id{currentLevel}+1}$
 		\If{$\id{leftLevel} \isequal \id{rightLevel}$}
 			\State	$\id{width} \gets \id{leftWidth}+\id{rightWidth}$
 			\State	$\id{level} \gets \id{leftLevel}$
 		\Else
+
 			\State	$\id{width} \gets \bcall{Max}{\id{leftWidth},\id{rightWidth}}$
 			\If{$\id{leftWidth} > \id{rightWidth}$}
 				\State	$\id{width} \gets \id{leftWidth}$
 				\State	$\id{level} \gets \id{leftLevel}$
 			\Else			
+
 				\State	$\id{width} \gets \id{rightWidth}$			
 				\State	$\id{level} \gets \id{rightLevel}$
 			\EndIf
+
 		\EndIf
+
 		\State	\Return	$(\id{width},\id{level})$
+
 \EndFunction
 \end{algorithmic}
 \end{latin}
@@ -567,6 +615,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{center}
 \includegraphics[scale=0.36]{figs/ch5/winner_loser_tree_1.pdf}
 \caption{درخت برنده-بازنده در ابتدای مرحله اول از اجرای الگوریتم یافتن دومین بزرگترین مقدار}\label{ch5:fig:winLose1}
+
 \end{center}
 \end{figure}
 
@@ -589,6 +638,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \begin{center}
 \includegraphics[scale=0.36]{figs/ch5/winner_loser_tree_3.pdf}
 \caption{درخت برنده-بازنده در انتهای مرحله دوم از اجرای الگوریم یافتن دومین بزرگترین مقدار}\label{ch5:fig:winLose3}
+
 \end{center}
 \end{figure}
 
@@ -648,6 +698,7 @@ nk-(n-1)=nk-n+1=n(k-1)+1
 \rput(21.851093,-2.645){\Large \rl{خیر}}
 \end{pspicture}
 }\caption{درخت تصمیم دودویی برای مرتب‌سازی سه عنصر}\label{ch5:fig:decisionTree}
+
 \end{center}
 \end{figure}
 
@@ -749,6 +800,7 @@ n!\leq 2^{k}\label{ch5:eqn:dTreeMinDptIneqn1}
 \begin{center}
 \includegraphics[scale=0.36]{figs/ch5/median_priority_queue_1.pdf}
 \caption{داده‌ساختار صف اولویت میانه که در آن عنصر میانه در ریشه درخت دودویی قرار دارد}\label{ch5:fig:medPrioQueue1}
+
 \end{center}
 \end{figure}
 
@@ -758,6 +810,7 @@ n!\leq 2^{k}\label{ch5:eqn:dTreeMinDptIneqn1}
 \begin{center}
 \includegraphics[scale=0.36]{figs/ch5/median_priority_queue_2.pdf}
 \caption{داده‌ساختار صف اولویت میانه که در آن عنصر میانه در ریشه زیردرخت چپ درخت دودویی قرار دارد}\label{ch5:fig:medPrioQueue2}
+
 \end{center}
 \end{figure}
 
